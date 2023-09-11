@@ -3,6 +3,9 @@ import type { FC, ReactNode } from 'react'
 import { HomeWrapper } from './styled'
 import Skeleton from '@/base-ui/skeleton'
 
+import HomeHeader from './components/header'
+import HomeBanner from './components/banner'
+
 interface IProps {
   children?: ReactNode
 }
@@ -13,7 +16,7 @@ const FrontHomePage: FC<IProps> = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 5000)
+    }, 1000)
     return () => clearTimeout(timer)
   }, [loading])
   return (
@@ -21,7 +24,10 @@ const FrontHomePage: FC<IProps> = () => {
       {loading ? (
         <Skeleton loading={loading} />
       ) : (
-        <HomeWrapper>测试</HomeWrapper>
+        <HomeWrapper>
+          <HomeHeader />
+          <HomeBanner />
+        </HomeWrapper>
       )}
     </>
   )

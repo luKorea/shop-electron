@@ -13,7 +13,6 @@ const http = new HttpRequest({
       return error
     },
     responseInterceptor(res) {
-      console.log(res)
       return res
     },
     responseInterceptorCatch(error) {

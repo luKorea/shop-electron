@@ -9,6 +9,9 @@ export const SkeletonWArapper = styled.div`
     height: 15px;
     margin-bottom: 12px;
     border-radius: 12px;
+    &:first-child {
+      width: 30%;
+    }
     &:last-child {
       width: 60%;
     }

@@ -1,3 +1,3 @@
 import { styled } from 'styled-components'
 
-export const HomeWrapper = styled.div``
+export const BannerWrapper = styled.div``
