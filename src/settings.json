@@ -4,5 +4,6 @@
   "menu": true,
   "footer": true,
   "themeColor": "#101010",
-  "menuWidth": 220
+  "menuWidth": 220,
+  "title": "家居商城"
 }

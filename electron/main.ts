@@ -10,10 +10,10 @@ protocol.registerSchemesAsPrivileged([
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    minWidth: 960,
-    minHeight: 540,
-    width: 960,
-    height: 540,
+    maxWidth: 375,
+    maxHeight: 667,
+    width: 375,
+    height: 667,
     //窗口是否在屏幕居中. 默认值为 false
     center: true,
     //设置为 false 时可以创建一个无边框窗口 默认值为 true。
