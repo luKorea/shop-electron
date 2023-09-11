@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { isSSR } from '@/utils/is'
+import { localCache } from '@/utils'
 
 const getDefaultStorage = (key: string) => {
   if (!isSSR) {
-    return localStorage.getItem(key)
+    return localCache.getCache(key)
   } else {
     return undefined
   }
@@ -18,7 +19,7 @@ export function useStorage(key: string, defaultValue?: string): TReturnType {
 
   const setStorageValue = (value: string) => {
     if (!isSSR) {
-      localStorage.setItem(key, value)
+      localCache.setCache(key, value)
       if (value !== storedValue) {
         setStoredValue(value)
       }
@@ -27,12 +28,12 @@ export function useStorage(key: string, defaultValue?: string): TReturnType {
 
   const removeStorage = () => {
     if (!isSSR) {
-      localStorage.removeItem(key)
+      localCache.removeCache(key)
     }
   }
 
   useEffect(() => {
-    const storageValue = localStorage.getItem(key)
+    const storageValue = localCache.getCache(key)
     if (storageValue) {
       setStoredValue(storageValue)
     }
