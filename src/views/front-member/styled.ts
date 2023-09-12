@@ -30,6 +30,11 @@ export const MemberWrapper = styled.div`
     .type-item {
       flex-shrink: 0;
     }
+    .arco-icon {
+      font-size: 24px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
   .auth-tip {
     margin: 0 auto;

@@ -11,6 +11,11 @@ export const TabBarWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    .arco-icon {
+      font-size: 24px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
   .center {
     flex: 1;

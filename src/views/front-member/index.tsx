@@ -1,16 +1,19 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
-import { MemberWrapper } from './styled'
-import TabBar from '@/components/tab-bar'
 import classNames from 'classnames'
 import { Divider, Checkbox } from '@arco-design/web-react'
-import { useTitle } from '@/hooks'
-import setting from '@/settings.json'
 import {
   IconLarkColor,
   IconTiktokColor,
   IconXiguaColor
 } from '@arco-design/web-react/icon'
+
+import { MemberWrapper } from './styled'
+import { useTitle } from '@/hooks'
+import setting from '@/settings.json'
+import TabBar from '@/components/tab-bar'
+import FormPanner from './components/form-panner'
+
 import { TLoginType } from './types'
 
 interface IProps {
@@ -39,13 +42,21 @@ const FrontMember: FC<IProps> = () => {
     { icon: <IconXiguaColor />, type: 'xigua' }
   ])
   const [title, setTitle] = useState<string>('登录')
-  const [selectIndex, setSelectIndex] = useState(0)
+  const [selectIndex, setSelectIndex] = useState<number>(0)
+  const [checked, setChecked] = useState<boolean>(false)
+  const [isRegister, setIsRegister] = useState(false)
+
   useTitle(title)
 
   useEffect(() => {
     const title = `${setting.title} - ${titleList[selectIndex].title}`
     setTitle(title)
   }, [selectIndex])
+
+  function changeSelectTitle(index: number) {
+    setSelectIndex(index)
+    setIsRegister(titleList[index].value === 2)
+  }
 
   function renderTitleWrapper() {
     return titleList.map((item, index) => (
@@ -54,7 +65,7 @@ const FrontMember: FC<IProps> = () => {
           'title-active': selectIndex === index
         })}
         key={item.value}
-        onClick={() => setSelectIndex(index)}
+        onClick={() => changeSelectTitle(index)}
       >
         {item.title}
         {index !== titleList.length - 1 && <Divider type="vertical" />}
@@ -74,20 +85,24 @@ const FrontMember: FC<IProps> = () => {
   }
 
   function goLoginPage(item: ILoginType) {
-    console.log(item, '---')
+    console.log(item, 'goLoginPage')
   }
   return (
     <MemberWrapper>
       <TabBar />
       <div className="title-wrap">{renderTitleWrapper()}</div>
-
+      <FormPanner isRegister={isRegister} />
       <div className="login-tip">
         <Divider>其他登录方式</Divider>
       </div>
       <div className="type-wrapper">{renderLoginType()}</div>
 
       <div className="auth-tip">
-        <Checkbox className={'checkbox-tip'}>
+        <Checkbox
+          className={'checkbox-tip'}
+          value={checked}
+          onChange={setChecked}
+        >
           登录即表示同意 <span className="tip-text">《用户协议》</span> &
           <span className="tip-text">《服务条款》</span>
         </Checkbox>
