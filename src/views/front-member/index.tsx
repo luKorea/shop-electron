@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Divider, Checkbox } from '@arco-design/web-react'
+import { Divider, Checkbox, Message } from '@arco-design/web-react'
 import {
   IconLarkColor,
   IconTiktokColor,
@@ -15,6 +15,8 @@ import TabBar from '@/components/tab-bar'
 import FormPanner from './components/form-panner'
 
 import { TLoginType } from './types'
+import { TKeyOfValue } from '@/types/constant'
+import { useMessageTip } from '@/utils/tip'
 
 interface IProps {
   children?: ReactNode
@@ -46,11 +48,10 @@ const FrontMember: FC<IProps> = () => {
   const [checked, setChecked] = useState<boolean>(false)
   const [isRegister, setIsRegister] = useState(false)
 
-  useTitle(title)
+  useTitle(`${setting.title} - ${title}`)
 
   useEffect(() => {
-    const title = `${setting.title} - ${titleList[selectIndex].title}`
-    setTitle(title)
+    setTitle(`${titleList[selectIndex].title}`)
   }, [selectIndex])
 
   function changeSelectTitle(index: number) {
@@ -87,11 +88,24 @@ const FrontMember: FC<IProps> = () => {
   function goLoginPage(item: ILoginType) {
     console.log(item, 'goLoginPage')
   }
+
+  function handleLoginOrRegister(data: TKeyOfValue) {
+    if (!checked) {
+      useMessageTip('error', '请先勾选协议')
+    } else {
+      useMessageTip('success', `${isRegister ? '注册' : '登录'}成功`)
+      console.log(data, '---用户传入的数据')
+    }
+  }
   return (
     <MemberWrapper>
       <TabBar />
       <div className="title-wrap">{renderTitleWrapper()}</div>
-      <FormPanner isRegister={isRegister} />
+      <FormPanner
+        isRegister={isRegister}
+        pageText={title}
+        getFromData={(data) => handleLoginOrRegister(data)}
+      />
       <div className="login-tip">
         <Divider>其他登录方式</Divider>
       </div>
