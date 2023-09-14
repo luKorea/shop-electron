@@ -7,12 +7,12 @@
     "name": "korealu",
     "email": "korealu@foxmail.com"
   },
-  "description": "electron-打包",
+  "description": "家居商城",
   "build": {
     "extends": null,
-    "appId": "lsl.first.app",
-    "productName": "react-electron",
-    "copyright": "Copyright © 2023 lsl",
+    "appId": "korealu.first.app",
+    "productName": "home-shopping-mall",
+    "copyright": "Copyright © 2023 Korealu",
     "directories": {
       "output": "dist_electron"
     },
