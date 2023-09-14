@@ -9,6 +9,7 @@ import Skeleton from '@/base-ui/skeleton'
 
 import HomeHeader from './components/header'
 import HomeBanner from './components/banner'
+import { PAGE_MEMBER } from '@/router/constant'
 
 interface IProps {
   children?: ReactNode
@@ -32,7 +33,7 @@ const FrontHomePage: FC<IProps> = () => {
         <HomeWrapper id={pageId}>
           <HomeHeader />
           <HomeBanner />
-          <Button onClick={() => nav('/login')}>登录</Button>
+          <Button onClick={() => nav(PAGE_MEMBER)}>登录</Button>
         </HomeWrapper>
       )}
     </>
