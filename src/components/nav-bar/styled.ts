@@ -8,8 +8,10 @@ export const NabBarWrapper = styled.div`
   ${flexAlignCenter};
   margin-bottom: var(--layout-margin);
   .left {
-    width: 32px;
     height: 100%;
+    font-size: var(--theme-font-size);
+    font-weight: var(--theme-font-weight);
+    color: var(--theme-color);
     ${flex};
     ${flexCenter};
     .back-icon {

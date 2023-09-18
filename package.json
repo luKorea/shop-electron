@@ -3,6 +3,18 @@
   "main": "electron/main.ts",
   "version": "0.1.0",
   "homepage": ".",
+  "scripts": {
+    "start": "craco start",
+    "start:electron": "concurrently \"wait-on http://localhost:9999 && electron .\" \"cross-env BROWSER=none npm start\"",
+    "build": "craco build",
+    "build:electron": "npm run build && electron-builder",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write .",
+    "lint": "eslint 'src/**/*.+(js|ts|jsx|tsx)' ",
+    "prepare": "husky install",
+    "commit": "cz"
+  },
   "author": {
     "name": "korealu",
     "email": "korealu@foxmail.com"
@@ -11,7 +23,7 @@
   "build": {
     "extends": null,
     "appId": "korealu.first.app",
-    "productName": "home-shopping-mall",
+    "productName": "家居商城",
     "copyright": "Copyright © 2023 Korealu",
     "directories": {
       "output": "dist_electron"
@@ -96,18 +108,6 @@
     "underscore": "^1.13.6",
     "wait-on": "^7.0.1",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "craco start",
-    "start:electron": "concurrently \"wait-on http://localhost:9999 && electron .\" \"cross-env BROWSER=none npm start\"",
-    "build": "craco build",
-    "build:electron": "npm run build && electron-builder",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prettier": "prettier --write .",
-    "lint": "eslint 'src/**/*.+(js|ts|jsx|tsx)' ",
-    "prepare": "husky install",
-    "commit": "cz"
   },
   "eslintConfig": {
     "extends": [

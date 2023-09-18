@@ -6,6 +6,7 @@ import { IconRight } from '@arco-design/web-react/icon'
 import LoginModal from '@/components/login-modal'
 import { checkLogin, useGetLocationName } from '@/utils/util'
 import { useNavigate } from 'react-router-dom'
+import NavBar from '@/components/nav-bar'
 
 interface IProps {
   children?: ReactNode
@@ -24,6 +25,7 @@ const ProfileComponents: FC<IProps> = () => {
   }
   return (
     <ProfileWrapper>
+      <NavBar renderLeft={() => '个人中心'} />
       <div className="avatar">头像</div>
       <div className="service-wrap">
         {serviceList.map((item, index) => (
