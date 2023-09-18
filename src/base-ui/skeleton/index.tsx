@@ -22,7 +22,8 @@ const Skeleton: FC<IProps> = (props) => {
   })
 
   function reduceRows(rows: number) {
-    const item = new Array(Math.floor(window.innerHeight / rows)).fill(0)
+    // 暂时减去 6行, 暂时完整
+    const item = new Array(Math.floor(window.innerHeight / rows - 6)).fill(0)
     setColumn(item)
   }
   useEffect(() => {

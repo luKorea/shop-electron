@@ -2,8 +2,7 @@ import styled from 'styled-components'
 
 export const MemberWrapper = styled.div`
   background-color: #fff;
-  padding: 12px;
-  height: 100vh;
+  padding: var(--layout-padding);
   .title-wrap {
     display: flex;
     align-items: center;

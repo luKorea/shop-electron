@@ -1,3 +1,4 @@
+import LoginAuth from '@/components/login-auth'
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
@@ -5,8 +6,8 @@ interface IProps {
   children?: ReactNode
 }
 
-const Index: FC<IProps> = () => {
-  return <div>Index</div>
+const FrontShoppingCart: FC<IProps> = () => {
+  return <div>FrontShoppingCart</div>
 }
 
-export default memo(Index)
+export default memo(LoginAuth(FrontShoppingCart))

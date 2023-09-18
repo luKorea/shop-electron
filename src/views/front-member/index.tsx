@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Divider, Checkbox, Message } from '@arco-design/web-react'
+import { Divider, Checkbox } from '@arco-design/web-react'
 import {
   IconLarkColor,
   IconTiktokColor,
@@ -11,12 +11,16 @@ import {
 import { MemberWrapper } from './styled'
 import { useTitle } from '@/hooks'
 import setting from '@/settings.json'
-import TabBar from '@/components/tab-bar'
+import NavBar from '@/components/nav-bar'
 import FormPanner from './components/form-panner'
 
 import { TLoginType } from './types'
 import { TKeyOfValue } from '@/types/constant'
 import { useMessageTip } from '@/utils/tip'
+import useGetSearchParams from '@/hooks/use-get-search-params'
+import { REDIRECT_URL } from '@/config/constant'
+import { useNavigate } from 'react-router-dom'
+import { localCache } from '@/utils'
 
 interface IProps {
   children?: ReactNode
@@ -38,6 +42,10 @@ const FrontMember: FC<IProps> = () => {
     { title: '登录', value: 1 },
     { title: '注册', value: 2 }
   ])
+  const nav = useNavigate()
+  const { redirect_url } = useGetSearchParams(REDIRECT_URL)
+  console.log(redirect_url)
+
   const [typeList] = useState<ILoginType[]>([
     { icon: <IconLarkColor />, type: 'lark' },
     { icon: <IconTiktokColor />, type: 'tiktok' },
@@ -94,12 +102,15 @@ const FrontMember: FC<IProps> = () => {
       useMessageTip('error', '请先勾选协议')
     } else {
       useMessageTip('success', `${isRegister ? '注册' : '登录'}成功`)
+      localCache.setCache('token', 'test-data-')
+      // 模拟登陆
+      nav(redirect_url)
       console.log(data, '---用户传入的数据')
     }
   }
   return (
     <MemberWrapper>
-      <TabBar />
+      <NavBar />
       <div className="title-wrap">{renderTitleWrapper()}</div>
       <FormPanner
         isRegister={isRegister}

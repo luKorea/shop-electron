@@ -1,8 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { HeaderWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
-import SearchComponent from './components/search-cpn'
+import { Button } from '@arco-design/web-react'
 
 interface IProps {
   children?: ReactNode
@@ -11,8 +10,7 @@ interface IProps {
 const HomeHeader: FC<IProps> = () => {
   return (
     <HeaderWrapper>
-      <NavBar />
-      <SearchComponent />
+      <Button type={'primary'}>测试主题色修改</Button>
     </HeaderWrapper>
   )
 }
