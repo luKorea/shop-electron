@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { TabBarWrapper } from './styled'
 import classNames from 'classnames'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IListItem, navbarList } from '@/config/tab-bar'
 import { useGetLocationName } from '@/utils/util'
 

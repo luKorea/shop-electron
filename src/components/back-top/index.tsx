@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { BackTop } from '@arco-design/web-react'
-import { IconCaretUp } from '@arco-design/web-react/icon'
 import { BackTopWrapper } from './styled'
 
 interface IProps {

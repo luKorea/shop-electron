@@ -1,6 +1,5 @@
 import React from 'react'
 import type { ReactNode } from 'react'
-import { localCache } from '@/utils'
 import { Button, Result, Typography } from '@arco-design/web-react'
 import { IconFaceFrownFill } from '@arco-design/web-react/icon'
 import { LoginModalWrapper } from './styled'
