@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom'
 
 interface IProps {
   children?: ReactNode
-  pathname: string
+  pathname?: string
   title?: string
   content?: string | ReactNode
   onHandleOk?: () => void
 }
 
-const LoginModal = (props: IProps, ref: Ref<any>) => {
+const TipModal = (props: IProps, ref: Ref<any>) => {
   const {
     title = '是否登录',
     content = ' 您还未登录, 是否前往登录?',
@@ -53,4 +53,4 @@ const LoginModal = (props: IProps, ref: Ref<any>) => {
   )
 }
 
-export default memo(forwardRef(LoginModal))
+export default memo(forwardRef(TipModal))

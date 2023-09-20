@@ -8,7 +8,7 @@ import Skeleton from '@/base-ui/skeleton'
 
 import HomeHeader from './components/header'
 import HomeBanner from './components/banner'
-import LoginModal from '@/components/login-modal'
+import LoginModal from '@/components/tip-modal'
 import { useGetLocationName } from '@/utils/util'
 
 interface IProps {

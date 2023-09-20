@@ -28,3 +28,10 @@ export const useGetLocationName = () => {
 
 // 校验用户是否登录
 export const checkLogin = () => !!localStorage.getItem('token')
+
+// 生成唯一字符串
+export function createUniqueString(): string {
+  const timestamp = String(Number(new Date()))
+  const randomNum = String((1 + Math.random()) * 65536)
+  return Number(randomNum + timestamp).toString(32)
+}

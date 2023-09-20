@@ -1,3 +1,22 @@
+import {
+  flex,
+  flexAlignCenter,
+  flexBetween,
+  flexColumn
+} from '@/assets/css/mixins'
 import styled from 'styled-components'
 
-export const Wrapper = styled.div``
+export const MessageManagementWrapper = styled.div`
+  padding: var(--layout-padding);
+  .wrap {
+    ${flex};
+    ${flexColumn};
+    .item {
+      ${flex};
+      ${flexBetween};
+      ${flexAlignCenter};
+      height: var(--theme-height);
+      margin-bottom: var(--layout-margin);
+    }
+  }
+`

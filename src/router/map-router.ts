@@ -67,6 +67,10 @@ const FrontProfileUserInfo = lazy(
   () => import('@/views/front-profile/user-info/index')
 )
 
+const FrontProfileSetting = lazy(
+  () => import('@/views/front-profile/setting/index')
+)
+
 const FrontProfileMessageCenter = lazy(
   () => import('@/views/front-profile/message/message-center/index')
 )
@@ -120,6 +124,7 @@ export {
   FrontProfileShareFriends,
   FrontProfileSecurityCenter,
   FrontProfilePasswordManagement,
+  FrontProfileSetting,
   FrontWalletMyWallet,
   FrontWalletAddBankCard,
   FrontWalletElectronicList,

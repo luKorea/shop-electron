@@ -1,25 +1,13 @@
-import React, { ReactNode, forwardRef, memo } from 'react'
+import React, { forwardRef, memo } from 'react'
 import { Button } from '@arco-design/web-react'
 import { IconButtonWrapper } from './styled'
+import { BaseButtonProps } from '@arco-design/web-react/es/Button/interface'
 
-interface IProps {
-  children?: ReactNode
-  icon: ReactNode
-  className: string
-  rest?: any
-}
-const IconButton = (props: IProps, ref: any) => {
-  const { icon, className, rest } = props
+const IconButton = (props: BaseButtonProps, ref: any) => {
+  const { icon } = props
   return (
     <IconButtonWrapper>
-      <Button
-        ref={ref}
-        icon={icon}
-        shape="circle"
-        type="secondary"
-        className={className}
-        {...rest}
-      />
+      <Button ref={ref} icon={icon} shape="circle" type="secondary" />
     </IconButtonWrapper>
   )
 }

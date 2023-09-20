@@ -28,6 +28,7 @@ import {
   FrontProfileShareFriends,
   FrontProfileSecurityCenter,
   FrontProfilePasswordManagement,
+  FrontProfileSetting,
   FrontWalletMyWallet,
   FrontWalletAddBankCard,
   FrontWalletElectronicList,
@@ -66,6 +67,7 @@ import {
   PAGE_PROFILE_SECURITY_CENTER,
   PAGE_PROFILE_SHARE_FRIENDS,
   PAGE_PROFILE_USER_INFO,
+  PAGE_PROFILE_SETTING,
   PAGE_WALLET_ADD_BANK_CARD,
   PAGE_WALLET_ELECTRONIC_LIST,
   PAGE_WALLET_MY_WALLET,
@@ -143,6 +145,10 @@ const routes: RouteObject[] = [
       {
         path: PAGE_PROFILE_USER_INFO,
         element: <FrontProfileUserInfo />
+      },
+      {
+        path: PAGE_PROFILE_SETTING,
+        element: <FrontProfileSetting />
       }
     ]
   },

@@ -10,6 +10,7 @@ import { useCountDown } from '@/hooks/use-count'
 import { FormInstance } from '@arco-design/web-react/es/Form'
 import { getUniqueKey } from '@/utils/util'
 import { TKeyOfValue } from '@/types/constant'
+import ConfirmButton from '@/components/confirm-btn'
 
 const FormItem = Form.Item
 
@@ -181,15 +182,10 @@ const FormPanner: FC<IProps> = (props) => {
           </FormItem>
         )}
         <FormItem>
-          <Button
-            type="primary"
-            shape="round"
-            size="large"
-            long
+          <ConfirmButton
             onClick={() => handleSendData()}
-          >
-            立即{props.pageText}
-          </Button>
+            confirmText={`立即${props.pageText}`}
+          ></ConfirmButton>
         </FormItem>
       </>
     )
