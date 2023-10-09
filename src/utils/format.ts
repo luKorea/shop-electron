@@ -25,9 +25,9 @@ export function formatUTC(utcString: string, format = 'YYYY-MM-DD HH:mm:ss') {
 
 interface IParams {
   money: string | number
-  decimals: number
-  isCNY: boolean
-  local: string
+  decimals?: number
+  isCNY?: boolean
+  local?: string
 }
 
 interface ILocal {
@@ -38,12 +38,8 @@ interface ILocalStyle {
   [key: string]: ILocal
 }
 
-export const formatMoney = ({
-  money,
-  decimals = 2,
-  isCNY = false,
-  local = 'zh-CN'
-}: IParams) => {
+export const formatMoney = (params: IParams) => {
+  const { money, decimals = 2, isCNY = true, local = 'zh-CN' } = params
   const localStyle: ILocalStyle = {
     'zh-CN': {
       style: 'currency', // 货币形式

@@ -7,6 +7,7 @@ interface IProps {
   children?: ReactNode
   confirmText: string | number
   onClick: () => void
+  icon?: ReactNode
 }
 
 const ConfirmButton: FC<IProps> = (props) => {
@@ -18,6 +19,7 @@ const ConfirmButton: FC<IProps> = (props) => {
         size="large"
         long
         className="confirm-btn"
+        icon={props.icon}
         onClick={() => props.onClick()}
       >
         {props.confirmText}

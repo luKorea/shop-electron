@@ -25,7 +25,6 @@ const NabBar: FC<IProps> = (props) => {
     if (renderLeft) return renderLeft()
     return <IconArrowLeft className="back-icon" onClick={goBack} />
   }
-
   return (
     <NabBarWrapper>
       {showLeft && <div className="left">{getDefaultRenderLeft()}</div>}

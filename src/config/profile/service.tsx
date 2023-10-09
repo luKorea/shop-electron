@@ -8,7 +8,7 @@ import {
   PAGE_PROFILE_SECURITY_CENTER,
   PAGE_PROFILE_SETTING,
   PAGE_PROFILE_SHARE_FRIENDS,
-  PAGE_WALLET_MY_WALLET
+  PAGE_WALLET_ELECTRONIC_LIST
 } from '@/router/constant'
 import { ReactNode } from 'react'
 import {
@@ -40,35 +40,35 @@ export const serviceList: IServiceItem[] = [
   },
   {
     icon: <IconNotification className="icon-class" />,
-    title: '消息',
+    title: '消息中心',
     isLogin: true,
     url: PAGE_PROFILE_MESSAGE_MANAGEMENT,
     id: createUniqueString()
   },
   {
     icon: <IconCodeSandbox className="icon-class" />,
-    title: '钱包',
+    title: '钱包管理',
     isLogin: true,
-    url: PAGE_WALLET_MY_WALLET,
+    url: PAGE_WALLET_ELECTRONIC_LIST,
     id: createUniqueString()
   },
   {
     icon: <IconSafe className="icon-class" />,
-    title: '安全',
+    title: '安全中心',
     isLogin: true,
     url: PAGE_PROFILE_SECURITY_CENTER,
     id: createUniqueString()
   },
   {
     icon: <IconLock className="icon-class" />,
-    title: '密码',
+    title: '密码管理',
     isLogin: true,
     url: PAGE_PROFILE_PASSWORD_MANAGEMENT,
     id: createUniqueString()
   },
   {
     icon: <IconExclamationCircle className="icon-class" />,
-    title: '帮助',
+    title: '帮助中心',
     isLogin: false,
     url: PAGE_PROFILE_HELP_CENTER,
     id: createUniqueString()
@@ -76,13 +76,13 @@ export const serviceList: IServiceItem[] = [
   {
     icon: <IconUserAdd className="icon-class" />,
     title: '分享好友',
-    isLogin: false,
+    isLogin: true,
     url: PAGE_PROFILE_SHARE_FRIENDS,
     id: createUniqueString()
   },
   {
     icon: <IconSettings className="icon-class" />,
-    title: '设置',
+    title: '设置中心',
     isLogin: true,
     url: PAGE_PROFILE_SETTING,
     id: createUniqueString()

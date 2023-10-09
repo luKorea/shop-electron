@@ -1,14 +1,13 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { FormWrapper } from './styled'
-import { Button, Form, Input } from '@arco-design/web-react'
+import { Form, Input } from '@arco-design/web-react'
 import { IFormItem } from '@/types/form-item'
 import { IconLock, IconSafe, IconUser } from '@arco-design/web-react/icon'
 import classNames from 'classnames'
 import { useCountDown } from '@/hooks/use-count'
 
 import { FormInstance } from '@arco-design/web-react/es/Form'
-import { getUniqueKey } from '@/utils/util'
 import { TKeyOfValue } from '@/types/constant'
 import ConfirmButton from '@/components/confirm-btn'
 
@@ -65,13 +64,7 @@ const FormPanner: FC<IProps> = (props) => {
       prefix: <IconSafe />
     },
     {
-      type: 'button',
-      btnType: {
-        shape: 'round',
-        type: 'primary',
-        long: true,
-        size: 'large'
-      }
+      type: 'button'
     }
   ])
   const [sendDisable, setSendDisable] = useState(true)
@@ -80,17 +73,29 @@ const FormPanner: FC<IProps> = (props) => {
 
   // 渲染表单
   function renderFormItem() {
-    return formList.map((item) => (
+    function getItem(item: Partial<IFormItem>) {
+      if (item.type === 'input') {
+        return <Input {...item} />
+      } else if (item.type === 'password') {
+        return <Input.Password {...item} />
+      } else if (item.type === 'verification-code' && props.isRegister) {
+        return renderVerificationCode(item)
+      } else if (item.type === 'button') {
+        return (
+          <ConfirmButton
+            onClick={() => handleSendData()}
+            confirmText={`立即${props.pageText}`}
+          ></ConfirmButton>
+        )
+      }
+    }
+    return formList.map((item: Partial<IFormItem>) => (
       <FormItem
         key={item.field}
         field={item.field}
         rules={[{ required: true }]}
       >
-        {item.type === 'input' && <Input {...item} />}
-        {item.type === 'verification-code' &&
-          props.isRegister &&
-          renderVerificationCode(item)}
-        {item.type === 'password' && <Input.Password {...item} />}
+        {getItem(item)}
       </FormItem>
     ))
   }
@@ -131,65 +136,6 @@ const FormPanner: FC<IProps> = (props) => {
       }
     }
   }
-
-  // 手动配置form-item
-  function renderFormItemToHandle() {
-    return (
-      <>
-        <FormItem
-          field={getUniqueKey(formField, 'username')}
-          rules={[{ required: true }]}
-        >
-          <Input
-            allowClear
-            size="large"
-            placeholder="请输入用户名"
-            prefix={<IconUser />}
-          />
-        </FormItem>
-        <FormItem
-          field={getUniqueKey(formField, 'password')}
-          rules={[{ required: true }]}
-        >
-          <Input.Password
-            allowClear
-            size="large"
-            placeholder="请输入密码"
-            prefix={<IconLock />}
-          />
-        </FormItem>
-        {props.isRegister && (
-          <FormItem
-            field={getUniqueKey(formField, 'code')}
-            rules={[{ required: true }]}
-          >
-            <Input
-              allowClear
-              size="large"
-              placeholder="请输入验证码"
-              prefix={<IconSafe />}
-              addAfter={
-                <span
-                  onClick={() => sendDisable && handleSendCode()}
-                  className={classNames({
-                    text: !sendDisable
-                  })}
-                >
-                  {sendDisable ? '获取验证码' : `${count}秒后获取`}
-                </span>
-              }
-            />
-          </FormItem>
-        )}
-        <FormItem>
-          <ConfirmButton
-            onClick={() => handleSendData()}
-            confirmText={`立即${props.pageText}`}
-          ></ConfirmButton>
-        </FormItem>
-      </>
-    )
-  }
   useEffect(() => {
     setSendDisable(true)
     clear()
@@ -202,8 +148,8 @@ const FormPanner: FC<IProps> = (props) => {
         scrollToFirstError
         {...formItemLayout}
       >
-        {/* {renderFormItem()} */}
-        {renderFormItemToHandle()}
+        {renderFormItem()}
+        <FormItem></FormItem>
       </Form>
     </FormWrapper>
   )

@@ -12,6 +12,10 @@ body,
   margin: 0 auto;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --tabbar-height: 50px;
   --tabbar-z-index: 1;
@@ -38,4 +42,13 @@ body,
 .page-title {
   display: flex;
   align-items: center;
+}
+
+.card-shadow {
+  box-shadow: 0 4px 10px rgb(var(--gray-2));
+}
+
+.second-title {
+  color: var(--second-color);
+  margin-bottom: var(--layout-margin);
 }

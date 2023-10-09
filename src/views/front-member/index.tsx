@@ -2,11 +2,6 @@ import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 import { Divider, Checkbox } from '@arco-design/web-react'
-import {
-  IconLarkColor,
-  IconTiktokColor,
-  IconXiguaColor
-} from '@arco-design/web-react/icon'
 
 import { MemberWrapper } from './styled'
 import { useTitle } from '@/hooks'
@@ -14,13 +9,13 @@ import setting from '@/settings.json'
 import NavBar from '@/components/nav-bar'
 import FormPanner from './components/form-panner'
 
-import { TLoginType } from './types'
 import { TKeyOfValue } from '@/types/constant'
 import { useMessageTip } from '@/utils/tip'
 import useGetSearchParams from '@/hooks/use-get-search-params'
 import { REDIRECT_URL } from '@/config/constant'
 import { useNavigate } from 'react-router-dom'
 import { localCache } from '@/utils'
+import { ILoginType, typeList } from '@/config/front-member'
 
 interface IProps {
   children?: ReactNode
@@ -31,12 +26,6 @@ interface ITitle {
   value: number
 }
 
-interface ILoginType {
-  icon: ReactNode
-  url?: string
-  type: TLoginType
-}
-
 const FrontMember: FC<IProps> = () => {
   const [titleList] = useState<ITitle[]>([
     { title: '登录', value: 1 },
@@ -44,13 +33,6 @@ const FrontMember: FC<IProps> = () => {
   ])
   const nav = useNavigate()
   const { redirect_url } = useGetSearchParams(REDIRECT_URL)
-  console.log(redirect_url)
-
-  const [typeList] = useState<ILoginType[]>([
-    { icon: <IconLarkColor />, type: 'lark' },
-    { icon: <IconTiktokColor />, type: 'tiktok' },
-    { icon: <IconXiguaColor />, type: 'xigua' }
-  ])
   const [title, setTitle] = useState<string>('登录')
   const [selectIndex, setSelectIndex] = useState<number>(0)
   const [checked, setChecked] = useState<boolean>(false)

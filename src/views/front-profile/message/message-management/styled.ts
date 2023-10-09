@@ -15,8 +15,6 @@ export const MessageManagementWrapper = styled.div`
       ${flex};
       ${flexBetween};
       ${flexAlignCenter};
-      height: var(--theme-height);
-      margin-bottom: var(--layout-margin);
     }
   }
 `

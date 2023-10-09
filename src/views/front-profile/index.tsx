@@ -16,9 +16,8 @@ interface IProps {
 }
 
 const ProfileComponents: FC<IProps> = () => {
-  const [selectPageName, setSelectPageName] = useState(
-    () => useGetLocationName().pathname
-  )
+  const { pathname } = useGetLocationName()
+  const [selectPageName, setSelectPageName] = useState(pathname)
   const loginModalRef = useRef<any>(null)
   const nav = useNavigate()
   function handleChangeEvent(item: IServiceItem) {

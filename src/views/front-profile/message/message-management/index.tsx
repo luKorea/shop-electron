@@ -7,6 +7,7 @@ import {
   messageManagementList
 } from '@/config/profile/message-management'
 import { Switch } from '@arco-design/web-react'
+import FrontCardComponent from '@/components/card/index'
 
 interface IProps {
   children?: ReactNode
@@ -33,14 +34,19 @@ const MessageManagementComponent: FC<IProps> = () => {
       <NavBar renderCenter={() => <div className="page-title">消息</div>} />
       <div className="wrap">
         {list.map((item) => (
-          <div className="item" key={item.id}>
-            <div className="title">{item.title}</div>
-            <Switch
-              defaultChecked={item.checked}
-              size="small"
-              onChange={(e) => handleChange(e, item.id)}
-            ></Switch>
-          </div>
+          <FrontCardComponent
+            key={item.id}
+            style={{ marginBottom: 'var(--layout-margin)' }}
+          >
+            <div className="item">
+              <div className="title">{item.title}</div>
+              <Switch
+                defaultChecked={item.checked}
+                size="small"
+                onChange={(e) => handleChange(e, item.id)}
+              ></Switch>
+            </div>
+          </FrontCardComponent>
         ))}
       </div>
     </MessageManagementWrapper>

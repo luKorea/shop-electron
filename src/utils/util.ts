@@ -35,3 +35,8 @@ export function createUniqueString(): string {
   const randomNum = String((1 + Math.random()) * 65536)
   return Number(randomNum + timestamp).toString(32)
 }
+
+export const randomHex = () =>
+  `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padEnd(6, '0')}`

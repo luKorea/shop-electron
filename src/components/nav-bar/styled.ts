@@ -7,6 +7,11 @@ export const NabBarWrapper = styled.div`
   ${flex};
   ${flexAlignCenter};
   margin-bottom: var(--layout-margin);
+  /* margin-top: -13px; */
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 99;
 
   .left {
     height: 100%;
@@ -16,7 +21,8 @@ export const NabBarWrapper = styled.div`
     font-weight: var(--theme-font-weight);
     color: var(--theme-color);
     .back-icon {
-      font-size: 24px;
+      font-size: 20px;
+      color: var(--second-color);
       stroke-linecap: round;
       stroke-linejoin: round;
     }

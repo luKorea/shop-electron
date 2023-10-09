@@ -46,6 +46,11 @@ export function useCommentConfig(): ComponentConfig {
       style: {
         width: '90%'
       }
+    },
+    DatePicker: {
+      style: {
+        width: '100%'
+      }
     }
   }
 }

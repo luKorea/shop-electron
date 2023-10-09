@@ -80,7 +80,7 @@
   },
   "private": true,
   "dependencies": {
-    "@arco-design/web-react": "^2.52.2",
+    "@arco-design/web-react": "^2.53.2",
     "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",

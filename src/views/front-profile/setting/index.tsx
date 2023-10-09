@@ -3,10 +3,11 @@ import type { FC, ReactNode } from 'react'
 import { SettingWrapper } from './styled'
 import LayoutModal from '@/components/tip-modal/index'
 import { IconExport } from '@arco-design/web-react/icon'
-import { Button } from '@arco-design/web-react'
 import { useNavigate } from 'react-router-dom'
 import { PAGE_PROFILE_INDEX } from '@/router/constant'
 import { localCache } from '@/utils'
+import ConfirmBtn from '@/components/confirm-btn'
+import NavBar from '@/components/nav-bar'
 
 interface IProps {
   children?: ReactNode
@@ -24,15 +25,12 @@ const SettingComponent: FC<IProps> = () => {
   }
   return (
     <SettingWrapper>
-      <Button
-        type="primary"
+      <NavBar renderCenter={() => '设置中心'} />
+      <ConfirmBtn
+        confirmText="退出登录"
         onClick={() => showTipModal()}
-        long
-        shape="round"
         icon={<IconExport />}
-      >
-        退出登录
-      </Button>
+      ></ConfirmBtn>
       <LayoutModal
         ref={logoutModalRef}
         title="退出登录"
