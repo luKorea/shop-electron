@@ -5,6 +5,7 @@ import NavBar from '@/components/nav-bar'
 import { createUniqueString, randomHex } from '@/utils/util'
 import classNames from 'classnames'
 import FrontCardComponent from '@/components/card/index'
+import { useMessageTip } from '@/utils/tip'
 
 interface IProps {
   children?: ReactNode
@@ -31,6 +32,21 @@ const ShareFriendsComponent: FC<IProps> = () => {
       }
     })
     setList(newList)
+  }
+
+  function handleChangeStatus(item: IListItem) {
+    if (item.status) {
+      useMessageTip('info', '您已经邀请过该好友啦')
+      return
+    } else {
+      const _list = [...list]
+      const selectItem = _list.find((i) => i.id === item.id)
+      if (selectItem) {
+        selectItem.status = true
+        setList(_list)
+        useMessageTip('success', `邀请用户: ${item.name} 成功`)
+      }
+    }
   }
   useEffect(() => {
     renderData()
@@ -59,6 +75,7 @@ const ShareFriendsComponent: FC<IProps> = () => {
                   'share-btn': true,
                   'is-share': item.status
                 })}
+                onClick={() => handleChangeStatus(item)}
               >
                 {item.status ? '已' : ''}邀请
               </div>

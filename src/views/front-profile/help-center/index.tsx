@@ -70,6 +70,7 @@ const HelpCenterComponent: FC<IProps> = () => {
         bordered={false}
         shadow={true}
         style={{ marginBottom: 20 }}
+        onClick={() => handleChangeShowDesc(item, parentIndex)}
       >
         <Space
           style={{
@@ -80,10 +81,7 @@ const HelpCenterComponent: FC<IProps> = () => {
           }}
         >
           <Typography.Text>{item.title}</Typography.Text>
-
-          <div onClick={() => handleChangeShowDesc(item, parentIndex)}>
-            {item.show ? <IconToTop /> : <IconToBottom />}
-          </div>
+          {item.show ? <IconToTop /> : <IconToBottom />}
         </Space>
         {item.show && (
           <Space>

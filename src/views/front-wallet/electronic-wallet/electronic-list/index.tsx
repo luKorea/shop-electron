@@ -7,8 +7,6 @@ import { IPayTypeItem, payTypeList } from '@/config/wallet/pay-type'
 import FrontCardComponent from '@/components/card/index'
 import ConfirmBtn from '@/components/confirm-btn'
 import { useNavigate } from 'react-router-dom'
-import { PAGE_WALLET_RECHARGE_WALLET } from '@/router/constant'
-
 interface IProps {
   children?: ReactNode
 }
@@ -24,7 +22,6 @@ const electronicListComponent: FC<IProps> = () => {
   }
   function handleChangePayType() {
     console.log(payType, '-------')
-    nav(PAGE_WALLET_RECHARGE_WALLET)
   }
   return (
     <ElectronicListWrapper>

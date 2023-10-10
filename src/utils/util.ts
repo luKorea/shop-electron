@@ -36,7 +36,27 @@ export function createUniqueString(): string {
   return Number(randomNum + timestamp).toString(32)
 }
 
-export const randomHex = () =>
-  `#${Math.floor(Math.random() * 0xffffff)
+export const randomHex = () => {
+  return `#${Math.floor(Math.random() * 0xffffff)
     .toString(16)
     .padEnd(6, '0')}`
+}
+export const randomNUmber = (m: number, n: number) => {
+  return Math.floor(Math.random() * (m - n + 1)) + n
+}
+
+export const styleStrToObject = (styleStr: string) => {
+  const obj: any = {}
+  const s = styleStr
+    .toLowerCase()
+    .replace(/-(.)/g, function (_: any, g: string) {
+      return g.toUpperCase()
+    })
+    .replace(/;\s?$/g, '')
+    .split(/:|;/g)
+  for (let i = 0; i < s.length; i += 2) {
+    obj[s[i].replace(/\s/g, '')] = s[i + 1].replace(/^\s+|\s+$/g, '')
+  }
+
+  return obj
+}

@@ -2,27 +2,28 @@ import { Card, CardProps } from '@arco-design/web-react'
 import classNames from 'classnames'
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { CardWrapper } from './styled'
 
 interface IProps extends CardProps {
   children?: ReactNode
   shadow?: boolean
-  className?: string
+  extraClassName?: string
 }
 
 const FrontCardComponent: FC<IProps> = (props) => {
-  const { children, shadow = true, className } = props
+  const { children, shadow = true, extraClassName } = props
   return (
-    <Card
-      className={classNames({
-        'card-shadow': shadow,
-        card: true,
-        className
-      })}
-      bordered={false}
-      {...props}
-    >
-      {children}
-    </Card>
+    <CardWrapper>
+      <Card
+        className={classNames(extraClassName, 'card', {
+          'card-shadow': shadow
+        })}
+        bordered={false}
+        {...props}
+      >
+        {children}
+      </Card>
+    </CardWrapper>
   )
 }
 

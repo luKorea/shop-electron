@@ -4,7 +4,7 @@ import { RechargeWalletWrapper } from './styled'
 import NavBar from '@/components/nav-bar'
 import classNames from 'classnames'
 import { formatMoney } from '@/utils/format'
-import { Input, InputNumber } from '@arco-design/web-react'
+import { InputNumber } from '@arco-design/web-react'
 import ConfirmBtn from '@/components/confirm-btn'
 
 interface IProps {

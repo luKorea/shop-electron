@@ -1,5 +1,10 @@
 @import url(./reset.less);
 
+@font-face {
+  font-family: 'ali';
+  src: url(../font/AlimamaDongFangDaKai-Regular.ttf);
+}
+
 html,
 body,
 #root,
@@ -10,10 +15,18 @@ body,
   min-width: 375px;
   max-width: 375px;
   margin: 0 auto;
+  font-family: 'ali', 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+    sans-serif;
+  color: var(--theme-color);
 }
 
 * {
   box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+  width: 100%;
 }
 
 :root {
@@ -27,8 +40,8 @@ body,
   --theme-font-weight: bold;
   --theme-line-height: 40px;
   --theme-height: 40px;
-  --second-color: rgb(187, 194, 206);
-  --third-color: rgb(242, 243, 245);
+  --second-color: #a9aeb8;
+  --third-color: #f2f3f5;
   --layout-padding: 13px;
   --layout-margin: 12px;
   --border-sm-radius: 12px;
@@ -37,6 +50,7 @@ body,
 
 .icon-class {
   font-size: 16px;
+  vertical-align: middle;
 }
 
 .page-title {
@@ -45,10 +59,17 @@ body,
 }
 
 .card-shadow {
-  box-shadow: 0 4px 10px rgb(var(--gray-2));
+  box-shadow: 0px 0px 12px var(--third-color);
+}
+
+.arco-dropdown-menu {
+  right: 8px !important;
+}
+
+.theme-title {
+  color: var(--theme-color);
 }
 
 .second-title {
   color: var(--second-color);
-  margin-bottom: var(--layout-margin);
 }

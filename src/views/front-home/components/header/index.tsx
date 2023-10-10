@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { HeaderWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
 import SearchComponent from './components/search-cpn'
+import UserInfoComponent from './components/user-info'
 
 interface IProps {
   children?: ReactNode
@@ -11,7 +11,7 @@ interface IProps {
 const HomeHeader: FC<IProps> = () => {
   return (
     <HeaderWrapper>
-      <NavBar />
+      <UserInfoComponent />
       <SearchComponent />
     </HeaderWrapper>
   )

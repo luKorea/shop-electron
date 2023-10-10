@@ -1,6 +1,6 @@
 # 项目配置说明
 
-# 1. 以下库为了解决 electron 启动同时打开浏览器 tab 以及 electron 客户单
+# 1. 以下库为了解决 electron 启动同时打开浏览器 tab 以及 electron 客户端
 
 1. npm i concurrently
 2. npm i wait-on

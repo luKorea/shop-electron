@@ -180,7 +180,7 @@ const routes: RouteObject[] = [
         element: <FrontWalletRecordList />
       },
       {
-        path: PAGE_WALLET_RECORD_DETAIL,
+        path: `${PAGE_WALLET_RECORD_DETAIL}/:id`,
         element: <FrontWalletRecordDetail />
       }
     ]
