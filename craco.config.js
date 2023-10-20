@@ -103,13 +103,12 @@ module.exports = {
   },
   // 配置代理
   devServer: {
-    port: 9999,
     proxy: {
-      '/api': {
-        target: 'http://localhost:8000',
+      '/v1': {
+        target: 'http://118.24.152.157:81/v1',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/v1': ''
         }
       }
     }

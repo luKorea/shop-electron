@@ -1,18 +1,24 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
-import { HeaderWrapper } from './styled'
-import { Button } from '@arco-design/web-react'
+import { GridWrapper } from './styled'
 
 interface IProps {
   children?: ReactNode
+  gridList: any[]
 }
 
-const HomeHeader: FC<IProps> = () => {
+const HomeGrid: FC<IProps> = (props) => {
+  const { gridList = [] } = props
   return (
-    <HeaderWrapper>
-      <Button type={'primary'}>测试主题色修改</Button>
-    </HeaderWrapper>
+    <GridWrapper>
+      {gridList.map((item) => (
+        <div className="item" key={item.id}>
+          {item.icon}
+          <div className="title">{item.title}</div>
+        </div>
+      ))}
+    </GridWrapper>
   )
 }
 
-export default memo(HomeHeader)
+export default memo(HomeGrid)

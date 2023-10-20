@@ -82,7 +82,7 @@
   "dependencies": {
     "@arco-design/web-react": "^2.53.2",
     "@craco/craco": "^7.1.0",
-    "@reduxjs/toolkit": "^1.9.5",
+    "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -98,7 +98,6 @@
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.9",
     "jsbarcode": "^3.11.5",
-    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-animations": "^1.0.0",

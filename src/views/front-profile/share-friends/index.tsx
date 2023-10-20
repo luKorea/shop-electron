@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { ShareFriendsWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import { createUniqueString, randomHex } from '@/utils/util'
 import classNames from 'classnames'
 import FrontCardComponent from '@/components/card/index'

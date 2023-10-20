@@ -1,12 +1,16 @@
 import { flexAlignCenter, flexBetween, flex } from '@/assets/css/mixins'
 import styled from 'styled-components'
+import { imageUrl } from '@/config/image'
 
 export const MyWalletWrapper = styled.div`
   padding: var(--layout-padding);
   .card-wrap {
     width: 100%;
     border-radius: 14px;
-    background: linear-gradient(90deg, #f9b645, #eeae40);
+    background-image: url(${imageUrl.cardImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: linear-gradient(90deg, #f9b645, #eeae40); */
     padding: var(--layout-padding);
     box-sizing: border-box;
     color: #fff;
@@ -22,7 +26,7 @@ export const MyWalletWrapper = styled.div`
     }
     .amount-text {
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-bottom: 40px;
     }
     .amount-wrap {
       ${flex};

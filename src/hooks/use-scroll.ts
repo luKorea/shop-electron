@@ -1,7 +1,7 @@
 import { throttle } from 'underscore'
 import { useEffect, useState } from 'react'
 
-export function useScroll(elRef: any) {
+export function useScroll(elRef?: any) {
   let el = window as any
   const [isReachBottom, setIsReachBottom] = useState(false)
   const [clientHeight, setClientHeight] = useState(0)
@@ -10,7 +10,7 @@ export function useScroll(elRef: any) {
 
   // 防抖/节流
   const scrollListenerHandler = throttle(() => {
-    if (el === window) {
+    if (el === document) {
       setClientHeight(document.documentElement.clientHeight)
       setScrollTop(document.documentElement.scrollTop)
       setScrollHeight(document.documentElement.scrollHeight)
@@ -21,6 +21,7 @@ export function useScroll(elRef: any) {
     }
     // 参数偏差0.5
     if (Math.round(clientHeight + scrollTop) >= scrollHeight) {
+      console.log(clientHeight, scrollTop, scrollHeight)
       console.log('滚动到底部了')
       setIsReachBottom(true)
     }
@@ -28,7 +29,7 @@ export function useScroll(elRef: any) {
 
   useEffect(() => {
     if (elRef) el = elRef.value
-    el.addEventListener('scroll', scrollListenerHandler)
+    el.addEventListener('scroll', scrollListenerHandler, true)
     return () => {
       el.removeEventListener('scroll', scrollListenerHandler)
     }

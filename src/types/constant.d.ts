@@ -15,3 +15,13 @@ export type TMessageType =
 export interface IVoidType {
   (): void
 }
+
+export enum EReduxThunkStatus {
+  error = 'rejected',
+  success = 'fulfilled'
+}
+
+export interface IPageInfo {
+  current_page: number
+  page_size: number
+}

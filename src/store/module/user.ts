@@ -1,10 +1,52 @@
+import { loginApi, registerApi } from '@/api/front-menber'
+import {
+  getUserInfoApi,
+  updateUserInfoApi
+} from '@/api/front-profile/user-info'
+import { TOKEN, USER_INFO } from '@/config/constant'
+import { ILoginParams, IUserInfoParams } from '@/types/module/user'
 import { localCache } from '@/utils'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 interface IDataType {
   token: string | null
-  userInfo: any
+  userInfo: Partial<IUserInfoParams>
 }
+
+export const fetchLoginAction = createAsyncThunk(
+  'login',
+  async (payload: ILoginParams, { dispatch }) => {
+    const res = await loginApi(payload)
+    dispatch(setUserInfoAction(res.data))
+    return res.data
+  }
+)
+export const fetchRegisterAction = createAsyncThunk(
+  'register',
+  async (payload: ILoginParams, { dispatch }) => {
+    const res = await registerApi(payload)
+    dispatch(setUserInfoAction(res.data))
+    return res.data
+  }
+)
+
+export const fetchUserInfoAction = createAsyncThunk(
+  'profile/userInfo',
+  async (_, { dispatch }) => {
+    const res = await getUserInfoApi()
+    dispatch(setUserInfoAction(res.data))
+    return res.data
+  }
+)
+
+export const fetchUpdateUserInfoAction = createAsyncThunk(
+  'profile/update/userInfo',
+  async (payload: IUserInfoParams, { dispatch }) => {
+    await updateUserInfoApi(payload)
+    dispatch(fetchUserInfoAction())
+  }
+)
+
 const userReducer = createSlice({
   name: 'user',
   initialState(): IDataType {
@@ -14,20 +56,32 @@ const userReducer = createSlice({
     }
   },
   reducers: {
+    setUserInfoAction(state: IDataType, { payload }) {
+      const userInfo = {
+        ...state.userInfo,
+        ...payload
+      }
+      state.userInfo = userInfo
+      localCache.setCache(USER_INFO, userInfo)
+    },
     setLocalDataAction(state: IDataType) {
-      const token = localCache.getCache('token')
-      const userInfo = localCache.getCache('userInfo')
+      const token = localCache.getCache(TOKEN)
+      const userInfo = localCache.getCache(USER_INFO)
       if (token && userInfo) {
-        console.log('用户已经登录')
         state.token = token
         state.userInfo = userInfo
-      } else {
-        console.log('当前用户未登录')
       }
+    },
+    logoutAction(state: IDataType) {
+      state.token = null
+      state.userInfo = {}
+      localCache.removeCache(TOKEN)
+      localCache.removeCache(USER_INFO)
     }
   }
 })
 
-export const { setLocalDataAction } = userReducer.actions
+export const { setLocalDataAction, setUserInfoAction, logoutAction } =
+  userReducer.actions
 
 export default userReducer.reducer

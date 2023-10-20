@@ -6,16 +6,19 @@ import { Divider, Checkbox } from '@arco-design/web-react'
 import { MemberWrapper } from './styled'
 import { useTitle } from '@/hooks'
 import setting from '@/settings.json'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import FormPanner from './components/form-panner'
 
-import { TKeyOfValue } from '@/types/constant'
 import { useMessageTip } from '@/utils/tip'
 import useGetSearchParams from '@/hooks/use-get-search-params'
 import { REDIRECT_URL } from '@/config/constant'
 import { useNavigate } from 'react-router-dom'
-import { localCache } from '@/utils'
 import { ILoginType, typeList } from '@/config/front-member'
+import { useAppDispatch } from '@/hooks/use-store'
+import { fetchLoginAction, fetchRegisterAction } from '@/store/module/user'
+import { PAGE_HOME } from '@/router/constant'
+import { checkLogin } from '@/utils/util'
+import { ILoginParams } from '@/types/module/user'
 
 interface IProps {
   children?: ReactNode
@@ -33,6 +36,8 @@ const FrontMember: FC<IProps> = () => {
   ])
   const nav = useNavigate()
   const { redirect_url } = useGetSearchParams(REDIRECT_URL)
+  const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState<string>('登录')
   const [selectIndex, setSelectIndex] = useState<number>(0)
   const [checked, setChecked] = useState<boolean>(false)
@@ -43,6 +48,10 @@ const FrontMember: FC<IProps> = () => {
   useEffect(() => {
     setTitle(`${titleList[selectIndex].title}`)
   }, [selectIndex])
+
+  useEffect(() => {
+    checkLogin() && nav(PAGE_HOME)
+  }, [])
 
   function changeSelectTitle(index: number) {
     setSelectIndex(index)
@@ -79,15 +88,26 @@ const FrontMember: FC<IProps> = () => {
     console.log(item, 'goLoginPage')
   }
 
-  function handleLoginOrRegister(data: TKeyOfValue) {
+  async function handleLoginOrRegister(data: ILoginParams) {
     if (!checked) {
       useMessageTip('error', '请先勾选协议')
     } else {
-      useMessageTip('success', `${isRegister ? '注册' : '登录'}成功`)
-      localCache.setCache('token', 'test-data-')
-      // 模拟登陆
-      nav(redirect_url)
-      console.log(data, '---用户传入的数据')
+      setLoading(true)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const res = await dispatch(
+        isRegister ? fetchRegisterAction(data) : fetchLoginAction(data)
+      )
+      if (res.meta.requestStatus === 'fulfilled') {
+        useMessageTip('success', `${isRegister ? '注册成功' : '登录成功'}`)
+        if (isRegister) {
+          setSelectIndex(0)
+          setIsRegister(false)
+        } else {
+          nav(redirect_url)
+        }
+      }
+      setLoading(false)
     }
   }
   return (
@@ -98,6 +118,7 @@ const FrontMember: FC<IProps> = () => {
         isRegister={isRegister}
         pageText={title}
         getFromData={(data) => handleLoginOrRegister(data)}
+        loading={loading}
       />
       <div className="login-tip">
         <Divider>其他登录方式</Divider>

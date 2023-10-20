@@ -5,12 +5,17 @@
   src: url(../font/AlimamaDongFangDaKai-Regular.ttf);
 }
 
+/* 隐藏 Chrome、Safari 和 Opera 的滚动条 */
+::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body,
 #root,
 .App {
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   box-sizing: border-box;
   min-width: 375px;
   max-width: 375px;
@@ -18,6 +23,13 @@ body,
   font-family: 'ali', 'Franklin Gothic Medium', 'Arial Narrow', Arial,
     sans-serif;
   color: var(--theme-color);
+  line-height: 1.5715;
+  white-space: normal;
+  text-align: left;
+  padding: 0;
+  min-height: 100%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 * {
@@ -42,6 +54,7 @@ img {
   --theme-height: 40px;
   --second-color: #a9aeb8;
   --third-color: #f2f3f5;
+  --gray-color: #f7f8fa;
   --layout-padding: 13px;
   --layout-margin: 12px;
   --border-sm-radius: 12px;
@@ -72,4 +85,26 @@ img {
 
 .second-title {
   color: var(--second-color);
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 99;
 }

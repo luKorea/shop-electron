@@ -6,10 +6,12 @@ import { IconEdit, IconMessage, IconRight } from '@arco-design/web-react/icon'
 import LoginModal from '@/components/tip-modal'
 import { checkLogin, useGetLocationName } from '@/utils/util'
 import { useNavigate } from 'react-router-dom'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import { Avatar, Divider } from '@arco-design/web-react'
 import { PAGE_PROFILE_USER_INFO } from '@/router/constant'
 import classNames from 'classnames'
+import { useAppSelector, useAppShallowEqual } from '@/hooks'
+import logoImage from '@/assets/logo.png'
 
 interface IProps {
   children?: ReactNode
@@ -20,6 +22,14 @@ const ProfileComponents: FC<IProps> = () => {
   const [selectPageName, setSelectPageName] = useState(pathname)
   const loginModalRef = useRef<any>(null)
   const nav = useNavigate()
+  const { userInfo } = useAppSelector(
+    (state) => ({
+      userInfo: state.userReducer.userInfo
+    }),
+    useAppShallowEqual
+  )
+  console.log(userInfo)
+
   function handleChangeEvent(item: IServiceItem) {
     item.url && setSelectPageName(item.url)
     if (item.isLogin && !checkLogin()) {
@@ -40,11 +50,7 @@ const ProfileComponents: FC<IProps> = () => {
             })
           }
         >
-          <img
-            className="image"
-            alt="avatar"
-            src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
-          />
+          <img className="image" alt="avatar" src={logoImage} />
           <div className="icon">
             <IconEdit className={classNames('icon-class', 'abs-icon')} />
           </div>

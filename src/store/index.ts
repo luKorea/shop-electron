@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './module/user'
+import homeReducer from './module/home'
+import commodityReducer from './module/commodity'
 const store = configureStore({
   reducer: {
-    userReducer
+    userReducer,
+    homeReducer,
+    commodityReducer
   }
 })
 

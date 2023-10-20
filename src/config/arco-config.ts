@@ -51,6 +51,17 @@ export function useCommentConfig(): ComponentConfig {
       style: {
         width: '100%'
       }
+    },
+    Divider: {
+      style: {
+        margin: '10px 0'
+      }
+    },
+    Drawer: {
+      style: {
+        borderTopLeftRadius: '14px',
+        borderTopRightRadius: '14px'
+      }
     }
   }
 }

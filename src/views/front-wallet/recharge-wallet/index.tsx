@@ -1,11 +1,11 @@
 import React, { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { RechargeWalletWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import classNames from 'classnames'
 import { formatMoney } from '@/utils/format'
 import { InputNumber } from '@arco-design/web-react'
-import ConfirmBtn from '@/components/confirm-btn'
+import ConfirmBtn from '@/components/form-component/confirm-btn'
 
 interface IProps {
   children?: ReactNode

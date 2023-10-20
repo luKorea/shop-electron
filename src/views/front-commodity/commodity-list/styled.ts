@@ -1,3 +1,5 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div``
+export const CommodityListWrapper = styled.div`
+  padding: var(--layout-padding);
+`

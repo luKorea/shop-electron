@@ -1,12 +1,13 @@
 import React, { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { ElectronicListWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import { Button, Space, Typography } from '@arco-design/web-react'
 import { IPayTypeItem, payTypeList } from '@/config/wallet/pay-type'
 import FrontCardComponent from '@/components/card/index'
-import ConfirmBtn from '@/components/confirm-btn'
+import ConfirmBtn from '@/components/form-component/confirm-btn'
 import { useNavigate } from 'react-router-dom'
+import { PAGE_WALLET_ADD_BANK_CARD } from '@/router/constant'
 interface IProps {
   children?: ReactNode
 }
@@ -57,6 +58,7 @@ const electronicListComponent: FC<IProps> = () => {
           shape="round"
           size="large"
           style={{ marginBottom: '40px' }}
+          onClick={() => nav(PAGE_WALLET_ADD_BANK_CARD)}
         >
           添加银行卡
         </Button>

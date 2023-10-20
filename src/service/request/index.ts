@@ -1,6 +1,11 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { HttpRequestConfig } from './types'
+import { useMessageTip } from '@/utils/tip'
+import { localCache } from '@/utils'
+import { TOKEN } from '@/config/constant'
+import { useAppDispatch } from '@/hooks'
+import { logoutAction } from '@/store/module/user'
 
 class HttpRequest {
   // 声明成员
@@ -16,16 +21,27 @@ class HttpRequest {
         return config
       },
       (err) => {
-        return err
+        return Promise.reject(err)
       }
     )
     // 全局响应栏拦截器
     this.instance.interceptors.response.use(
       (res) => {
+        const { authorization } = res.headers
+        if (authorization) {
+          localCache.setCache(TOKEN, authorization)
+        }
         return res.data
       },
       (err) => {
-        return err
+        const { response } = err
+        if (response.data.code === 401) {
+          const dispatch = useAppDispatch()
+          dispatch(logoutAction())
+        } else {
+          useMessageTip('error', response?.data?.msg ?? '出错啦')
+        }
+        return Promise.reject(response ? response.data : err)
       }
     )
     // 单独请求拦截器
@@ -46,10 +62,11 @@ class HttpRequest {
     if (config.interceptors?.requestInterceptor) {
       config = config.interceptors.requestInterceptor(config)
     }
-    return new Promise<T>((resolve, reject) => {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise<T>(async (resolve, reject) => {
       this.instance
         .request<any, T>(config)
-        .then((res) => {
+        .then((res: any) => {
           // 处理单个响应成功拦截
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)

@@ -1,10 +1,11 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { RecordListWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import { IRecordListItem, recordList } from '@/config/wallet/record-list'
-import RecordListData from '@/components/data-list/record-list'
-import SearchIconComponent from '@/components/search-icon'
+import RecordListData from '@/components/business-component/data-list/record-list'
+import SearchIconComponent from '@/components/icon-component/search-icon'
+import FrontSkeletonComponent from '@/base-ui/skeleton'
 
 interface IProps {
   children?: ReactNode
@@ -12,12 +13,18 @@ interface IProps {
 
 const RecordListComponent: FC<IProps> = () => {
   const [list, setList] = useState<IRecordListItem[]>(recordList)
+  const [loading, setLoading] = useState(true)
   const handleSearch = (value: string) => {
     let _list = [...recordList]
     if (!value.length) setList(_list)
     _list = _list.filter((item) => item.type.includes(value))
     setList(_list)
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+  }, [])
   return (
     <RecordListWrapper>
       <NavBar
@@ -28,7 +35,9 @@ const RecordListComponent: FC<IProps> = () => {
           />
         )}
       />
-      <RecordListData list={list} />
+      <FrontSkeletonComponent loading={loading}>
+        <RecordListData list={list} />
+      </FrontSkeletonComponent>
     </RecordListWrapper>
   )
 }

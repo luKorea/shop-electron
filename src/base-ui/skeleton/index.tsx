@@ -13,7 +13,13 @@ interface IProps {
 }
 
 const Skeleton: FC<IProps> = (props) => {
-  const { loading, rows = 24, classNames = '', animate, style = {} } = props
+  const {
+    loading,
+    rows = 18,
+    classNames = '',
+    animate = true,
+    style = {}
+  } = props
   const [column, setColumn] = useState<number[]>([])
   const getClassName = classnames({
     'ant-skeleton-paragraph-row': true,
@@ -23,7 +29,8 @@ const Skeleton: FC<IProps> = (props) => {
 
   function reduceRows(rows: number) {
     // 暂时减去 6行, 暂时完整
-    const item = new Array(Math.floor(window.innerHeight / rows - 6)).fill(0)
+    // const item = new Array(Math.floor(window.innerHeight / rows - 20)).fill(0)
+    const item = new Array(rows).fill(0)
     setColumn(item)
   }
   useEffect(() => {
@@ -32,16 +39,20 @@ const Skeleton: FC<IProps> = (props) => {
       setColumn([])
     }
   }, [rows])
+
+  function renderSkeletonRow() {
+    return (
+      <div className="row-wrap">
+        {column.map((_, index) => (
+          <div key={index} className={getClassName}></div>
+        ))}
+      </div>
+    )
+  }
   return (
-    <>
-      {loading && (
-        <SkeletonWArapper className={classNames} style={{ ...style }}>
-          {column.map((_, index) => (
-            <div key={index} className={getClassName}></div>
-          ))}
-        </SkeletonWArapper>
-      )}
-    </>
+    <SkeletonWArapper className={classNames} style={{ ...style }}>
+      {loading ? renderSkeletonRow() : props.children}
+    </SkeletonWArapper>
   )
 }
 

@@ -1,7 +1,12 @@
+import { tabMixins } from '@/assets/css/mixins'
 import styled from 'styled-components'
 
 export const HelpCenterWrapper = styled.div`
   padding: var(--layout-padding);
+  .question-wrap {
+    z-index: 1;
+    ${tabMixins};
+  }
   .contact-list {
     display: flex;
     flex-direction: column;

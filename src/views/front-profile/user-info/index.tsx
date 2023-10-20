@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { IFormItem } from '@/types/form-item'
 import { UserInfoWrapper } from './styled'
@@ -10,58 +10,58 @@ import {
   IconUser,
   IconUserGroup
 } from '@arco-design/web-react/icon'
-import ConfirmBtn from '@/components/confirm-btn'
-import NavBar from '@/components/nav-bar'
+import ConfirmBtn from '@/components/form-component/confirm-btn'
+import NavBar from '@/components/business-component/nav-bar'
+import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'
+import { fetchUserInfoAction } from '@/store/module/user'
+import FrontSkeleton from '@/base-ui/skeleton'
 
 interface IProps {
   children?: ReactNode
 }
 
-interface IUserInfo {
-  username: string
-  email: string
-  gender: number
-  birthday: string
-  phone: number
-}
-
 const UserInfoComponent: FC<IProps> = () => {
   const [form] = Form.useForm()
+  const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(true)
+  const { userInfo } = useAppSelector(
+    (state) => ({
+      userInfo: state.userReducer.userInfo
+    }),
+    useAppShallowEqual
+  )
   const formItemLayout = {
     wrapperCol: {
       span: 24
     }
   }
-  const [userInfo, setUserInfo] = useState<IUserInfo>({
-    username: 'korea',
-    email: 'korealu@foxmail.com',
-    gender: 1,
-    birthday: '2023-09-22',
-    phone: 18819794599
-  })
   const [fieldList] = useState<Partial<IFormItem>[]>([
     {
       field: 'username',
       type: 'input',
       suffix: <IconUser />,
+      allowClear: true,
       placeholder: '请输入姓名'
     },
     {
       field: 'email',
       type: 'input',
       suffix: <IconEmail />,
+      allowClear: true,
       placeholder: '请输入邮箱'
     },
     {
       field: 'phone',
       type: 'input',
       suffix: <IconPhone />,
+      allowClear: true,
       placeholder: '请输入手机号码'
     },
     {
       field: 'birthday',
       type: 'date-picker',
-      placeholder: '请选择日期'
+      placeholder: '请选择日期',
+      allowClear: true
     },
     {
       field: 'gender',
@@ -76,6 +76,10 @@ const UserInfoComponent: FC<IProps> = () => {
         {
           label: '女',
           value: 2
+        },
+        {
+          label: '未知',
+          value: 0
         }
       ]
     },
@@ -84,16 +88,23 @@ const UserInfoComponent: FC<IProps> = () => {
     }
   ])
 
+  useEffect(() => {
+    async function getData() {
+      await dispatch(fetchUserInfoAction())
+      setLoading(false)
+    }
+    getData()
+  }, [])
   function changeUserInfo() {
     const res: any = form.getFields()
-    setUserInfo(res)
+    console.log(res)
   }
   function renderFormItem() {
     function getItem(item: Partial<IFormItem>) {
       if (item.type === 'input') {
-        return <Input {...item} allowClear />
+        return <Input {...item} />
       } else if (item.type === 'date-picker') {
-        return <DatePicker style={{ width: '100%' }} {...item} allowClear />
+        return <DatePicker {...item} />
       } else if (item.type === 'select') {
         return (
           <Select
@@ -112,26 +123,28 @@ const UserInfoComponent: FC<IProps> = () => {
         )
       }
     }
-    return fieldList.map((item) => (
-      <Form.Item key={item.field} field={item.field}>
+    return fieldList.map((item, index) => (
+      <Form.Item key={index} field={item.field}>
         {getItem(item)}
       </Form.Item>
     ))
   }
   return (
-    <UserInfoWrapper>
-      <NavBar renderCenter={() => '编辑个人信息'} />
-      <Form
-        className="form-wrapper"
-        autoComplete="off"
-        form={form}
-        scrollToFirstError
-        {...formItemLayout}
-        initialValues={{ ...userInfo }}
-      >
-        {renderFormItem()}
-      </Form>
-    </UserInfoWrapper>
+    <FrontSkeleton loading={loading}>
+      <UserInfoWrapper>
+        <NavBar renderCenter={() => '编辑个人信息'} />
+        <Form
+          className="form-wrapper"
+          autoComplete="off"
+          form={form}
+          scrollToFirstError
+          {...formItemLayout}
+          initialValues={{ ...userInfo }}
+        >
+          {renderFormItem()}
+        </Form>
+      </UserInfoWrapper>
+    </FrontSkeleton>
   )
 }
 

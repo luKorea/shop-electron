@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, RouteObject } from 'react-router-dom'
+import { NonIndexRouteObject, Navigate } from 'react-router-dom'
 
 import {
   FrontHome,
@@ -78,7 +78,12 @@ import {
   PAGE_WALLET
 } from './constant'
 
-const routes: RouteObject[] = [
+interface IRouterExtends extends NonIndexRouteObject {
+  isLogin?: boolean
+  children?: IRouterExtends[]
+}
+
+const routes: IRouterExtends[] = [
   {
     path: '/',
     element: <Navigate to={PAGE_HOME} />
@@ -112,7 +117,8 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_PROFILE_INDEX,
-        element: <FrontProfileIndex />
+        element: <FrontProfileIndex />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_COLLECTING,
@@ -124,31 +130,38 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_PROFILE_MESSAGE_CENTER,
-        element: <FrontProfileMessageCenter />
+        element: <FrontProfileMessageCenter />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_MESSAGE_MANAGEMENT,
-        element: <FrontProfileMessageManagement />
+        element: <FrontProfileMessageManagement />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_SECURITY_CENTER,
-        element: <FrontProfileSecurityCenter />
+        element: <FrontProfileSecurityCenter />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_PASSWORD_MANAGEMENT,
-        element: <FrontProfilePasswordManagement />
+        element: <FrontProfilePasswordManagement />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_SHARE_FRIENDS,
-        element: <FrontProfileShareFriends />
+        element: <FrontProfileShareFriends />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_USER_INFO,
-        element: <FrontProfileUserInfo />
+        element: <FrontProfileUserInfo />,
+        isLogin: true
       },
       {
         path: PAGE_PROFILE_SETTING,
-        element: <FrontProfileSetting />
+        element: <FrontProfileSetting />,
+        isLogin: true
       }
     ]
   },
@@ -165,23 +178,28 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_WALLET_ADD_BANK_CARD,
-        element: <FrontWalletAddBankCard />
+        element: <FrontWalletAddBankCard />,
+        isLogin: true
       },
       {
         path: PAGE_WALLET_ELECTRONIC_LIST,
-        element: <FrontWalletElectronicList />
+        element: <FrontWalletElectronicList />,
+        isLogin: true
       },
       {
         path: PAGE_WALLET_RECHARGE_WALLET,
-        element: <FrontWalletRechargeWallet />
+        element: <FrontWalletRechargeWallet />,
+        isLogin: true
       },
       {
         path: PAGE_WALLET_RECORD_LIST,
-        element: <FrontWalletRecordList />
+        element: <FrontWalletRecordList />,
+        isLogin: true
       },
       {
         path: `${PAGE_WALLET_RECORD_DETAIL}/:id`,
-        element: <FrontWalletRecordDetail />
+        element: <FrontWalletRecordDetail />,
+        isLogin: true
       }
     ]
   },
@@ -194,23 +212,28 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_ADDRESS_LIST,
-        element: <FrontAddressList />
+        element: <FrontAddressList />,
+        isLogin: true
       },
       {
         path: PAGE_ADDRESS_LOGISTICS_INFORMATION,
-        element: <FrontAddressLogisticsInformation />
+        element: <FrontAddressLogisticsInformation />,
+        isLogin: true
       },
       {
         path: PAGE_ADDRESS_ADD_ADDRESS,
-        element: <FrontAddressAddAddress />
+        element: <FrontAddressAddAddress />,
+        isLogin: true
       },
       {
         path: PAGE_ADDRESS_EXPRESS_LIST,
-        element: <FrontAddressExpressList />
+        element: <FrontAddressExpressList />,
+        isLogin: true
       },
       {
         path: PAGE_ADDRESS_ADD_EXPRESS,
-        element: <FrontAddressAddExpress />
+        element: <FrontAddressAddExpress />,
+        isLogin: true
       }
     ]
   },
@@ -227,14 +250,15 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_COMMODITY_ACCOUNTS,
-        element: <FrontCommodityAccounts />
+        element: <FrontCommodityAccounts />,
+        isLogin: true
       },
       {
         path: PAGE_COMMODITY_COMMENT,
         element: <FrontCommodityComment />
       },
       {
-        path: PAGE_COMMODITY_DETAIL,
+        path: `${PAGE_COMMODITY_DETAIL}/:id`,
         element: <FrontCommodityDetail />
       }
     ]
@@ -252,7 +276,8 @@ const routes: RouteObject[] = [
       },
       {
         path: PAGE_COUPON__DISCOUNT_COUPON,
-        element: <FrontDiscountCoupon />
+        element: <FrontDiscountCoupon />,
+        isLogin: true
       }
     ]
   },

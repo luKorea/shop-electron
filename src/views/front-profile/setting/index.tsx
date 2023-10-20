@@ -5,9 +5,10 @@ import LayoutModal from '@/components/tip-modal/index'
 import { IconExport } from '@arco-design/web-react/icon'
 import { useNavigate } from 'react-router-dom'
 import { PAGE_PROFILE_INDEX } from '@/router/constant'
-import { localCache } from '@/utils'
-import ConfirmBtn from '@/components/confirm-btn'
-import NavBar from '@/components/nav-bar'
+import ConfirmBtn from '@/components/form-component/confirm-btn'
+import NavBar from '@/components/business-component/nav-bar'
+import { logoutAction } from '@/store/module/user'
+import { useAppDispatch } from '@/hooks'
 
 interface IProps {
   children?: ReactNode
@@ -15,12 +16,13 @@ interface IProps {
 
 const SettingComponent: FC<IProps> = () => {
   const nav = useNavigate()
+  const dispatch = useAppDispatch()
   const logoutModalRef = useRef<any>(null)
   function showTipModal() {
     logoutModalRef.current && logoutModalRef.current.setVisible(true)
   }
   function handleLogout() {
-    localCache.clearCache()
+    dispatch(logoutAction())
     nav(PAGE_PROFILE_INDEX)
   }
   return (

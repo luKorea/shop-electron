@@ -1,7 +1,3 @@
 import styled from 'styled-components'
 
-export const FormWrapper = styled.div`
-  .text {
-    color: var(--color-text-4);
-  }
-`
+export const FormWrapper = styled.div``

@@ -4,10 +4,13 @@ import { ReactNode } from 'react'
 export type TFormType =
   | 'input'
   | 'password'
+  | 'confirm-password'
   | 'button'
   | 'verification-code'
   | 'date-picker'
   | 'select'
+  | 'input-number'
+  | 'graph-validate-code'
 export type TSize = 'mini' | 'small' | 'default' | 'large'
 
 interface IButtonType extends ButtonProps {
@@ -32,5 +35,6 @@ export interface IFormItem {
   prefix?: string | ReactNode
   suffix?: string | ReactNode
   selectOptions?: ISelectItem[]
+  dependencies?: string[]
   [key as string]?: unknown
 }

@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { HelpCenterWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
+import NavBar from '@/components/business-component/nav-bar'
 import { Space, Tabs, Typography } from '@arco-design/web-react'
 import { contactUsList } from '@/config/front-member'
 import FrontCardComponent from '@/components/card/index'

@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { RecordDetailWrapper } from './styled'
-import NavBar from '@/components/nav-bar'
-import MoreIcon from '@/components/more-icon'
+import NavBar from '@/components/business-component/nav-bar'
+import MoreIcon from '@/components/icon-component/more-icon'
 import { Divider, Menu, Tag } from '@arco-design/web-react'
 import {
   IconDown,
@@ -12,11 +12,12 @@ import {
 } from '@arco-design/web-react/icon'
 import { useParams } from 'react-router-dom'
 import FrontCardComponent from '@/components/card/index'
-import BarCodeComponent from '@/components/bar-code'
+import BarCodeComponent from '@/components/business-component/bar-code'
 import { IRecordListItem, recordList } from '@/config/wallet/record-list'
 import NothingPage from '@/components/nothing-page'
 import LazyImage from '@/components/lazy-image'
 import { formatMoney } from '@/utils/format'
+import FrontSkeletonComponent from '@/base-ui/skeleton'
 
 interface IProps {
   children?: ReactNode
@@ -30,6 +31,7 @@ const RecordDetailComponent: FC<IProps> = () => {
     fontSize: '16px',
     verticalAlign: 'middle'
   }
+  const [loading, setLoading] = useState(true)
 
   const cardStyled: CSSProperties = {
     marginBottom: 'var(--layout-margin)'
@@ -39,6 +41,9 @@ const RecordDetailComponent: FC<IProps> = () => {
     console.log(recordList)
     const data = recordList.find((item) => id === item.id)
     setItemData(data ?? null)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
   }, [id])
 
   function renderDropDown() {
@@ -66,7 +71,7 @@ const RecordDetailComponent: FC<IProps> = () => {
         {/* 商品信息 */}
         <FrontCardComponent style={cardStyled}>
           <div className="item">
-            <LazyImage className="item-image" url={itemData?.image} />
+            <LazyImage extraClassName="item-image" url={itemData?.image} />
             <div className="item-info">
               <div className="item-title">{itemData?.type}</div>
               <div className="second-title">{itemData?.time}</div>
@@ -129,10 +134,12 @@ const RecordDetailComponent: FC<IProps> = () => {
         renderCenter={() => '交易记录详情'}
         renderRight={() => <MoreIcon menuList={renderDropDown()} />}
       />
-      <FrontCardComponent style={cardStyled}>
-        <BarCodeComponent value={id + ''} />
-      </FrontCardComponent>
-      {!itemData ? <NothingPage /> : renderRecordInfo()}
+      <FrontSkeletonComponent loading={loading}>
+        <FrontCardComponent style={cardStyled}>
+          <BarCodeComponent value={id + ''} />
+        </FrontCardComponent>
+        {!itemData ? <NothingPage /> : renderRecordInfo()}
+      </FrontSkeletonComponent>
     </RecordDetailWrapper>
   )
 }

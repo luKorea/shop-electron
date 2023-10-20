@@ -1,5 +1,8 @@
 import type { TKeyOfValue } from '@/types/constant'
+import dayjs from 'dayjs'
 import { useLocation } from 'react-router-dom'
+import { localCache } from './cache'
+import { TOKEN } from '@/config/constant'
 
 /**
  * @description 后续完善对 symbol 类型的检出
@@ -27,7 +30,7 @@ export const useGetLocationName = () => {
 }
 
 // 校验用户是否登录
-export const checkLogin = () => !!localStorage.getItem('token')
+export const checkLogin = () => !!localCache.getCache(TOKEN)
 
 // 生成唯一字符串
 export function createUniqueString(): string {
@@ -59,4 +62,21 @@ export const styleStrToObject = (styleStr: string) => {
   }
 
   return obj
+}
+
+export const splitBankNumber = (cardNumber: string): string => {
+  return cardNumber.replace(/[^\d]/g, '').replace(/(\d{4})(?=\d)/g, '$1 ')
+}
+
+export const getNowTimeText = () => {
+  const time = +dayjs().format('HH')
+  if (time >= 0 && time <= 11) {
+    return '早上好'
+  } else if (time >= 11 && time <= 13) {
+    return '中午好'
+  } else if (time >= 13 && time <= 18) {
+    return '下午好'
+  } else if (time >= 18 && time <= 24) {
+    return '晚上好'
+  }
 }
