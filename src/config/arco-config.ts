@@ -58,9 +58,13 @@ export function useCommentConfig(): ComponentConfig {
       }
     },
     Drawer: {
+      className: 'arco-drawer-extra',
       style: {
-        borderTopLeftRadius: '14px',
-        borderTopRightRadius: '14px'
+        borderTopLeftRadius: '16px',
+        borderTopRightRadius: '16px'
+      },
+      headerStyle: {
+        borderBottom: 'none'
       }
     }
   }

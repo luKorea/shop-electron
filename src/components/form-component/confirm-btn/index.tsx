@@ -1,9 +1,9 @@
-import { Button } from '@arco-design/web-react'
+import { Button, ButtonProps } from '@arco-design/web-react'
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { ConfirmButtonWrap } from './styled'
 
-interface IProps {
+interface IProps extends ButtonProps {
   children?: ReactNode
   confirmText: string | number
   onClick: () => void
@@ -15,6 +15,7 @@ const ConfirmButton: FC<IProps> = (props) => {
   return (
     <ConfirmButtonWrap>
       <Button
+        {...props}
         type="primary"
         shape="round"
         size="large"

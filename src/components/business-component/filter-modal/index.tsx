@@ -3,7 +3,6 @@ import type { FC, ReactNode } from 'react'
 import { FilterModalWrapper } from './styled'
 import {
   Button,
-  Drawer,
   Rate,
   Slider,
   Space,
@@ -13,7 +12,7 @@ import {
 import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'
 import { fetchCommodityLisAction } from '@/store/module/commodity'
 import TabList from '@/components/business-component/data-list/tab-list'
-
+import DrawerModalComponent from '@/components/drawer-modal'
 interface IProps {
   children?: ReactNode
   visible: boolean
@@ -170,16 +169,9 @@ const FilterModalComponent: FC<IProps> = (props) => {
   }
   return (
     <FilterModalWrapper>
-      <Drawer
-        title={<div style={{ textAlign: 'center' }}>高级筛选</div>}
-        closable={false}
-        visible={props.visible}
-        placement={'bottom'}
-        footer={renderFooter()}
-        height={'auto'}
-      >
+      <DrawerModalComponent visible={props.visible} footer={renderFooter()}>
         {renderFormField()}
-      </Drawer>
+      </DrawerModalComponent>
     </FilterModalWrapper>
   )
 }

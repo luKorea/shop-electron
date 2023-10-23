@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(5, auto);
-  margin-top: var(--layout-margin);
+  margin: var(--layout-margin) 0;
   align-items: center;
   box-sizing: border-box;
   flex-wrap: wrap;
@@ -19,7 +19,7 @@ export const GridWrapper = styled.div`
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    background-color: var(--second-color);
+    background-color: var(--third-color);
     .title {
       margin-top: 4px;
     }

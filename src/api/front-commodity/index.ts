@@ -6,3 +6,10 @@ export const getCommodityListApi = (params: any) => {
     params
   })
 }
+
+export const getCommodityDetailApi = (params: any) => {
+  return http.get({
+    url: 'commodity/list',
+    params
+  })
+}

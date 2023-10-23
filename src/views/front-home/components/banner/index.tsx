@@ -6,6 +6,7 @@ import { Carousel } from '@arco-design/web-react'
 import { useNavigate } from 'react-router-dom'
 import { PAGE_COMMODITY_LIST } from '@/router/constant'
 import NothingPage from '@/components/nothing-page'
+import LazyImage from '@/components/lazy-image'
 
 interface IProps {
   children?: ReactNode
@@ -45,16 +46,20 @@ const HomeBanner: FC<IProps> = (props) => {
           className={'carousel-wrap'}
         >
           {bannerList.map((src, index) => (
-            <img
-              src={src}
-              key={index}
-              style={{ width: '100%', borderRadius: '12px' }}
-            />
+            <img src={src} key={index} className="item-img" />
           ))}
         </Carousel>
       ) : (
         <NothingPage />
       )}
+
+      {/* <LazyImage
+              width={'100%'}
+              height={160}
+              url={src}
+              key={index}
+              extraClassName="item-img"
+            /> */}
     </BannerWrapper>
   )
 }

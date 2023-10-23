@@ -15,6 +15,8 @@ import CommodityListDataComponent from '@/components/business-component/data-lis
 import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'
 import { fetchCommodityLisAction } from '@/store/module/commodity'
 import { fetchHomeDataAction } from '@/store/module/home'
+import NavBar from '@/components/business-component/nav-bar'
+import { PAGE_COMMODITY_LIST } from '@/router/constant'
 
 interface IProps {
   children?: ReactNode
@@ -55,6 +57,13 @@ const FrontHomePage: FC<IProps> = () => {
         <HomeHeader onGoPage={(pathname) => handleShowLoginModal(pathname)} />
         <HomeBanner bannerList={bannerList} />
         <HomeGird gridList={gridList} />
+        <NavBar
+          isSticky={false}
+          renderLeft={() => '推荐'}
+          renderRight={() => (
+            <div onClick={() => nav(PAGE_COMMODITY_LIST)}>更多</div>
+          )}
+        />
         <TabListComponent tabList={gridList} />
         <CommodityListDataComponent list={commodityList} />
       </HomeWrapper>

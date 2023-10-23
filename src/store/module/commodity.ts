@@ -1,4 +1,7 @@
-import { getCommodityListApi } from '@/api/front-commodity'
+import {
+  getCommodityDetailApi,
+  getCommodityListApi
+} from '@/api/front-commodity'
 import { _renderCommodityList } from '@/config/commodity'
 import { IPageInfo } from '@/types/constant'
 import { ICommodityItem } from '@/types/module/commodity-list'
@@ -6,6 +9,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 interface IState extends IPageInfo {
   list: ICommodityItem[]
+  current_info: any
 }
 
 export const fetchCommodityLisAction = createAsyncThunk(
@@ -23,18 +27,30 @@ export const fetchCommodityLisAction = createAsyncThunk(
   }
 )
 
+export const fetchCommodityDetailAction = createAsyncThunk(
+  'commodity/detail',
+  async (id: string | number, { dispatch }) => {
+    const { data } = await getCommodityDetailApi({ id })
+    dispatch(setCurrentCommodityInfo(data))
+  }
+)
+
 const commodityReducer = createSlice({
   name: 'commodity',
   initialState(): IState {
     return {
       list: [],
       current_page: 1,
-      page_size: 10
+      page_size: 10,
+      current_info: {}
     }
   },
   reducers: {
     setDataAction(state: IState, { payload }) {
       state.list = payload
+    },
+    setCurrentCommodityInfo(state: IState, { payload }) {
+      state.current_info = payload
     },
     setPageInfoAction(state: IState, { payload }) {
       state.current_page = payload.current_page
@@ -43,6 +59,7 @@ const commodityReducer = createSlice({
   }
 })
 
-export const { setDataAction, setPageInfoAction } = commodityReducer.actions
+export const { setDataAction, setPageInfoAction, setCurrentCommodityInfo } =
+  commodityReducer.actions
 
 export default commodityReducer.reducer

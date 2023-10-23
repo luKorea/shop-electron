@@ -33,13 +33,13 @@ const CommodityListComponent: FC<IProps> = () => {
     useAppShallowEqual
   )
   const dispatch = useAppDispatch()
-  const { state } = useLocation()
+  const { state = {} } = useLocation()
   const { isReachBottom } = useScroll()
   function getData() {
     dispatch(
       fetchCommodityLisAction({
         ...pageInfo,
-        type: state.type
+        type: state?.type
       })
     )
     setLoading(false)
@@ -53,8 +53,6 @@ const CommodityListComponent: FC<IProps> = () => {
         ...pageInfo,
         current_page: ++pageInfo.current_page
       })
-      console.log(123123)
-
       getData()
     }
   }, [isReachBottom])

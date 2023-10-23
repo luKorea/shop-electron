@@ -7,9 +7,6 @@ export const FilterModalWrapper = styled.div`
     ${flexAlignCenter};
     width: 100%;
   }
-  .arco-drawer-header-title {
-    width: 100%;
-  }
   .form-item {
     margin-bottom: var(--layout-margin);
   }

@@ -1,6 +1,8 @@
 import { ICommodityItem } from '@/types/module/commodity-list'
 import { createUniqueString } from '@/utils/util'
 
+export type TCommodityType = 'special' | 'recommend'
+
 export function _renderCommodityList() {
   return new Array(10).fill(null).map((_, index) => {
     const result: ICommodityItem = {
