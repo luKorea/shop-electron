@@ -1,4 +1,4 @@
-import { throttle } from 'underscore'
+import { throttle } from 'lodash'
 import { useEffect, useState } from 'react'
 
 export function useScroll(elRef?: any) {

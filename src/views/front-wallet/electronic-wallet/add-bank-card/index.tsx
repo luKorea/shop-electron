@@ -8,7 +8,7 @@ import { TKeyOfValue } from '@/types/constant'
 import { formatMoney } from '@/utils/format'
 import { DatePicker, Form, Input, InputNumber } from '@arco-design/web-react'
 import ConfirmBtn from '@/components/form-component/confirm-btn'
-import { debounce } from 'underscore'
+import { debounce } from 'lodash'
 import { splitBankNumber } from '@/utils/util'
 
 const FormItem = Form.Item

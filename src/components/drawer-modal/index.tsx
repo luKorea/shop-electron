@@ -14,7 +14,8 @@ const DrawerModalComponent: FC<IProps> = (props) => {
     placement = 'bottom',
     closable = false,
     footer,
-    height = 'auto'
+    height = 'auto',
+    unmountOnExit = true
   } = props
   return (
     <DrawerModalWrapper>
@@ -24,6 +25,7 @@ const DrawerModalComponent: FC<IProps> = (props) => {
         placement={placement}
         footer={footer}
         height={height}
+        unmountOnExit={unmountOnExit}
         {...props}
       >
         {children}
