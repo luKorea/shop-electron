@@ -39,9 +39,10 @@ const CommodityDetailComponent: FC<IProps> = () => {
       <CommodityBannerComponent list={bannerList} />
       <FrontCardComponent>
         <CommodityDescComponent />
-        <Divider />
-        <div className="reduce-wrap">
-          <div className="amount-wrap">
+      </FrontCardComponent>
+      <div className="reduce-wrap fixed-wrap">
+        <div className="amount-wrap">
+          <div>
             <div className="second-title">总价</div>
             <div className="theme-title">{formatMoney({ money: '999' })}</div>
           </div>
@@ -51,7 +52,7 @@ const CommodityDetailComponent: FC<IProps> = () => {
             loading={loading}
           ></ConfirmBtn>
         </div>
-      </FrontCardComponent>
+      </div>
     </CommodityDetailWrapper>
   )
 }

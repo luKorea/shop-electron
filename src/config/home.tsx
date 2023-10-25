@@ -10,7 +10,7 @@ import {
   IconStorage,
   IconTrophy
 } from '@arco-design/web-react/icon'
-import { IHomeData } from '@/store/module/home'
+import { IHomeData } from '@/types/module/home'
 
 export const homeList: IHomeData = {
   bannerList: [

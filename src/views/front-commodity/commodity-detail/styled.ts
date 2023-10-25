@@ -14,8 +14,13 @@ export const CommodityDetailWrapper = styled.div`
     ${flex};
     ${flexBetween};
     ${flexAlignCenter};
+    ${flexColumn};
     background-color: #fff;
     .amount-wrap {
+      ${flex};
+      ${flexBetween};
+      ${flexAlignCenter};
+      width: 100%;
     }
   }
 `

@@ -53,9 +53,7 @@ export function useCommentConfig(): ComponentConfig {
       }
     },
     Divider: {
-      style: {
-        margin: '10px 0'
-      }
+      className: 'arco-divider-extra'
     },
     Drawer: {
       className: 'arco-drawer-extra',

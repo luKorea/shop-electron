@@ -1,11 +1,7 @@
 import { getHomeDataApi } from '@/api/front-home'
 import { homeList } from '@/config/home'
+import { IHomeData } from '@/types/module/home'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
-export interface IHomeData {
-  bannerList: any[]
-  gridList: any[]
-}
 
 export const fetchHomeDataAction = createAsyncThunk(
   'home/getData',

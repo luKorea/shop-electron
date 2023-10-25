@@ -12,7 +12,7 @@ const PAGE_SEARCH = '/front-search'
 const PAGE_ADDRESS = '/front-address'
 /** 地址模块-地址管理 */
 const PAGE_ADDRESS_LIST = PAGE_ADDRESS + '/list'
-/** 地址模块-新增地址 */
+/** 地址模块-新增/编辑地址 */
 const PAGE_ADDRESS_ADD_ADDRESS = PAGE_ADDRESS + '/add-address'
 /** 地址模块-物流列表 */
 const PAGE_ADDRESS_EXPRESS_LIST = PAGE_ADDRESS + '/express-list'

@@ -2,6 +2,7 @@ import { Button, ButtonProps } from '@arco-design/web-react'
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { ConfirmButtonWrap } from './styled'
+import classNames from 'classnames'
 
 interface IProps extends ButtonProps {
   children?: ReactNode
@@ -20,7 +21,7 @@ const ConfirmButton: FC<IProps> = (props) => {
         shape="round"
         size="large"
         long
-        className="confirm-btn"
+        className={classNames('confirm-btn', props.className)}
         icon={props.icon}
         loading={props.loading}
         onClick={() => props.onClick()}

@@ -55,6 +55,7 @@ img {
   --second-color: #a9aeb8;
   --third-color: #f2f3f5;
   --gray-color: #f7f8fa;
+  --border-color: rgb(229, 230, 235);
   --layout-padding: 13px;
   --layout-margin: 12px;
   --border-sm-radius: 12px;
@@ -110,4 +111,24 @@ img {
   left: 0;
   background-color: #fff;
   z-index: 99;
+}
+
+.fixed-wrap {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  padding: var(--layout-padding);
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff !important;
+  border-top: 1px solid var(--border-color);
+}
+.has-fixed-wrap-height {
+  padding-bottom: 60px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.page {
+  padding: var(--layout-padding);
 }
