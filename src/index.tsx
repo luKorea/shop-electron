@@ -4,7 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 // arco-ui
-import { ConfigProvider } from '@arco-design/web-react'
+import { ConfigProvider, Watermark } from '@arco-design/web-react'
 
 // 自定义 hooks
 import { GlobalContext } from './context/use-context'
@@ -15,6 +15,7 @@ import 'normalize.css'
 import './assets/css/common.less'
 
 import App from './App'
+import setting from '@/settings.json'
 import {
   useArcoLocale,
   useCommentConfig,
@@ -35,7 +36,9 @@ function FrontNode() {
           {/* react-router */}
           <Suspense fallback="">
             <HashRouter>
-              <App />
+              <Watermark content={setting.watermark}>
+                <App />
+              </Watermark>
             </HashRouter>
           </Suspense>
         </GlobalContext.Provider>

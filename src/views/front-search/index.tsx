@@ -37,13 +37,12 @@ const SearchComponent: FC<IProps> = () => {
         allowClear
         loading={loading}
         searchButton
-        onSearch={(value: string) => handleSearch(value)}
-        onChange={(value: string) => handleSearch(value)}
-        value={value}
+        onSearch={(value) => handleSearch(value)}
+        onChange={(value) => handleSearch(value)}
       />
     )
   }
-  function setHistoryValue() {
+  function setHistoryValue(value: string) {
     const _list = [...historyList]
     // 判断是否已经存在
     const hasItem = _list.find((item) => item === value)
@@ -57,7 +56,7 @@ const SearchComponent: FC<IProps> = () => {
     setValue(value)
     if (!value.length) return
     setLoading(true)
-    setHistoryValue()
+    setHistoryValue(value)
     dispatch(
       fetchCommodityLisAction({
         search_value: value
@@ -113,7 +112,7 @@ const SearchComponent: FC<IProps> = () => {
           onClick={() => setVisible(!visible)}
         />
       </div>
-      {value.length == 0 && renderHistoryList()}
+      {value.length === 0 && renderHistoryList()}
       {!!value.length && (
         <CommodityListDataComponent
           list={commodityList}

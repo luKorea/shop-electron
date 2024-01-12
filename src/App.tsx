@@ -35,10 +35,7 @@ function App() {
     })
   }
   useEffect(() => {
-    function useInitStore() {
-      dispatch(setLocalDataAction())
-    }
-    useInitStore()
+    dispatch(setLocalDataAction())
     isGoLoginPage()
   }, [])
   useEffect(() => {
