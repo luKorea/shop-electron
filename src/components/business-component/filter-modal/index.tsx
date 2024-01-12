@@ -16,7 +16,7 @@ import DrawerModalComponent from '@/components/drawer-modal'
 interface IProps {
   children?: ReactNode
   visible: boolean
-  onToggleModalState?: (visible: boolean) => void
+  onToggleModalState: (visible: boolean) => void
 }
 
 type IFormType = 'tab' | 'rate' | 'slider'

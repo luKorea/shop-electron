@@ -15,6 +15,7 @@ interface IState extends IPageInfo {
 export const fetchCommodityLisAction = createAsyncThunk(
   'commodity/list',
   async (payload: any, { dispatch }) => {
+    console.log(payload)
     // const { data } = await getCommodityListApi(payload)
     // dispatch(
     //   setPageInfoAction({

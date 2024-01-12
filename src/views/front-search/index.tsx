@@ -39,27 +39,31 @@ const SearchComponent: FC<IProps> = () => {
         searchButton
         onSearch={(value: string) => handleSearch(value)}
         onChange={(value: string) => handleSearch(value)}
+        value={value}
       />
     )
   }
-  const handleSearch = debounce((value: string) => {
-    setValue(value)
-    function _setHistoryValue() {
-      const _list = [...historyList]
+  function setHistoryValue() {
+    const _list = [...historyList]
+    // 判断是否已经存在
+    const hasItem = _list.find((item) => item === value)
+    if (!hasItem) {
       _list.push(value)
       setHistoryList(_list)
       localCache.setCache(HISTORY_LIST, _list)
     }
-    if (value.length) {
-      _setHistoryValue()
-      setLoading(true)
-      dispatch(
-        fetchCommodityLisAction({
-          search_value: value
-        })
-      )
-      setLoading(false)
-    }
+  }
+  const handleSearch = debounce((value: string) => {
+    setValue(value)
+    if (!value.length) return
+    setLoading(true)
+    setHistoryValue()
+    dispatch(
+      fetchCommodityLisAction({
+        search_value: value
+      })
+    )
+    setLoading(false)
   }, 300)
   function renderHistoryList() {
     return (
@@ -79,7 +83,12 @@ const SearchComponent: FC<IProps> = () => {
         <Divider />
         {historyList.map((item, index) => (
           <div className="history-item" key={index}>
-            <div className="second-title ellipsis title">{item}</div>
+            <div
+              className="second-title ellipsis title"
+              onClick={() => handleSearch(item)}
+            >
+              {item}
+            </div>
             <IconCloseCircle
               className="icon-close"
               onClick={() => {
@@ -111,7 +120,10 @@ const SearchComponent: FC<IProps> = () => {
           nothingTitle="对不起, 无法找到您输入的关键字, 请在此检查或使用其他关键字搜索"
         />
       )}
-      <FilterModal visible={visible} />
+      <FilterModal
+        visible={visible}
+        onToggleModalState={(visible) => setVisible(visible)}
+      />
     </FrontSearchWrapper>
   )
 }
