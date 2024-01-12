@@ -21,9 +21,9 @@ function App() {
   const nav = useNavigate()
   function isGoLoginPage() {
     routes.find((item) => {
-      if (item.path && pathname.includes(item.path) && item.children?.length) {
+      if (pathname.includes(item?.path ?? '') && item.children?.length) {
         const selectItem = item.children.find((i) => i.path === pathname)
-        if (selectItem && selectItem.isLogin) {
+        if (selectItem?.isLogin) {
           if (!checkLogin()) {
             useMessageTip('warning', '登录信息已失效, 请重新登录')
             nav(`${PAGE_MEMBER}?${REDIRECT_URL}=${selectItem.path}`, {

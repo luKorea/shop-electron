@@ -1,4 +1,4 @@
-import { loginApi, registerApi } from '@/api/front-menber'
+import { getVerificationCode, loginApi, registerApi } from '@/api/front-member'
 import {
   getUserInfoApi,
   updateUserInfoApi
@@ -26,6 +26,13 @@ export const fetchRegisterAction = createAsyncThunk(
   async (payload: ILoginParams, { dispatch }) => {
     const res = await registerApi(payload)
     dispatch(setUserInfoAction(res.data))
+    return res.data
+  }
+)
+export const fetchVerificationCodeAction = createAsyncThunk(
+  'register/get-verification-code',
+  async (phone: string) => {
+    const res = await getVerificationCode(phone)
     return res.data
   }
 )
@@ -64,6 +71,7 @@ const userReducer = createSlice({
       state.userInfo = userInfo
       localCache.setCache(USER_INFO, userInfo)
     },
+
     setLocalDataAction(state: IDataType) {
       const token = localCache.getCache(TOKEN)
       const userInfo = localCache.getCache(USER_INFO)

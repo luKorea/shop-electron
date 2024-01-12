@@ -7,19 +7,19 @@ import { Provider } from 'react-redux'
 import { ConfigProvider } from '@arco-design/web-react'
 
 // 自定义 hooks
-import { GlobalContext } from './src/context/use-context'
-import store from './src/store'
+import { GlobalContext } from './context/use-context'
+import store from './store'
 
 // 样式
 import 'normalize.css'
 import './assets/css/common.less'
 
-import App from './src/App'
+import App from './App'
 import {
   useArcoLocale,
   useCommentConfig,
   useGlobalConfig
-} from './src/config/arco-config'
+} from './config/arco-config'
 
 function FrontNode() {
   return (

@@ -27,7 +27,7 @@ const FormPanner: FC<IProps> = (props) => {
       span: 24
     }
   }
-  const [formData] = useState<ILoginParams>({
+  const [formData, setFormData] = useState<ILoginParams>({
     phone: '13417072049',
     password: '123456'
   })
@@ -117,6 +117,7 @@ const FormPanner: FC<IProps> = (props) => {
         return (
           <VerificationCode
             item={item}
+            formData={formData}
             getValue={(value) => handleGetCode(value)}
           />
         )
@@ -151,6 +152,7 @@ const FormPanner: FC<IProps> = (props) => {
       console.log('出错啦')
     }
   }
+
   return (
     <FormWrapper>
       <Form
@@ -160,6 +162,12 @@ const FormPanner: FC<IProps> = (props) => {
         {...formItemLayout}
         disabled={props.loading}
         initialValues={formData}
+        onChange={(item: Partial<ILoginParams>) => {
+          setFormData({
+            ...formData,
+            ...item
+          })
+        }}
       >
         {renderFormItem()}
       </Form>
