@@ -10,6 +10,7 @@ import { fetchCommodityLisAction } from '@/store/module/commodity'
 import { localCache } from '@/utils'
 import CommodityListDataComponent from '@/components/business-component/data-list/commodity-list'
 import { HISTORY_LIST } from '@/config/constant'
+import NavBar from '@/components/business-component/nav-bar'
 
 interface IProps {
   children?: ReactNode
@@ -105,6 +106,7 @@ const SearchComponent: FC<IProps> = () => {
 
   return (
     <FrontSearchWrapper>
+      <NavBar renderCenter={() => '搜索'} />
       <div className="search-wrap sticky">
         {renderSearch()}
         <IconFilter
