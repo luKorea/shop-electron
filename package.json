@@ -5,7 +5,7 @@
   "homepage": ".",
   "scripts": {
     "start": "craco start",
-    "start:electron": "concurrently \"wait-on http://localhost:9999 && electron .\" \"cross-env BROWSER=none npm start\"",
+    "start:electron": "concurrently \"wait-on http://localhost:9111 && electron .\" \"cross-env BROWSER=none npm start\"",
     "build": "craco build",
     "build:electron": "npm run build && electron-builder",
     "test": "react-scripts test",
@@ -81,7 +81,6 @@
   "private": true,
   "dependencies": {
     "@arco-design/web-react": "^2.53.2",
-    "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -94,7 +93,6 @@
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "concurrently": "^8.2.0",
-    "craco-less": "^3.0.0",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.9",
     "jsbarcode": "^3.11.5",
@@ -134,6 +132,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
+    "@craco/craco": "^7.0.0-alpha.9",
     "@types/lodash": "^4.14.199",
     "@types/react-animations": "^1.0.1",
     "@types/react-transition-group": "^4.4.7",
@@ -152,7 +151,8 @@
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.0",
     "postcss-px-to-viewport": "^1.1.1",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "craco-less": "^2.1.0-alpha.0"
   },
   "config": {
     "commitizen": {

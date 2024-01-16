@@ -9,8 +9,8 @@ import {
   Tag,
   Typography
 } from '@arco-design/web-react'
-import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'
-import { fetchCommodityLisAction } from '@/store/module/commodity'
+import { useAppSelector, useAppShallowEqual } from '@/hooks'
+// import { fetchCommodityLisAction } from '@/store/module/commodity'
 import TabList from '@/components/business-component/data-list/tab-list'
 import DrawerModalComponent from '@/components/drawer-modal'
 interface IProps {
@@ -70,7 +70,7 @@ const FilterModalComponent: FC<IProps> = (props) => {
     }),
     useAppShallowEqual
   )
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
   function handleChangeValue(key: string, value: string | number | number[]) {
     setSearchInfo({

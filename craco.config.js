@@ -63,7 +63,8 @@ module.exports = {
           unitPrecision: 6, // 单位转换后保留的精度
           propList: ['*'], // 能转化为vw的属性列表
           transformRuntime: true // 设置 transformation:true 之后，可以转换被字符串模板嵌套的字符串表达式
-        }
+        },
+        'third'
       ]
     ]
   },
@@ -114,3 +115,5 @@ module.exports = {
     }
   }
 }
+
+console.log(process.env.NODE_ENV)
