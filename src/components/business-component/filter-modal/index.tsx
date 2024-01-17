@@ -22,6 +22,7 @@ interface IProps {
 type IFormType = 'tab' | 'rate' | 'slider'
 
 interface IFormItem {
+  // ISearchInfo[keyof ISearchInfo]
   field: string
   label: string
   type: IFormType
@@ -82,6 +83,10 @@ const FilterModalComponent: FC<IProps> = (props) => {
     console.log(searchInfo)
 
     // dispatch(fetchCommodityLisAction({}))
+    handleHideModal()
+  }
+
+  function handleHideModal() {
     props.onToggleModalState && props.onToggleModalState(false)
   }
   function renderFooter() {
@@ -98,9 +103,7 @@ const FilterModalComponent: FC<IProps> = (props) => {
           size="large"
           long
           style={{ marginRight: 'var(--layout-margin)' }}
-          onClick={() =>
-            props.onToggleModalState && props.onToggleModalState(false)
-          }
+          onClick={() => handleHideModal()}
         >
           取消
         </Button>
@@ -139,7 +142,7 @@ const FilterModalComponent: FC<IProps> = (props) => {
             range={{
               draggableBar: true
             }}
-            onChange={(value) => handleChangeValue('amount', value)}
+            onChange={(value) => handleChangeValue(item.field, value)}
             defaultValue={[10, 20]}
           />
         )}

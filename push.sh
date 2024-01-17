@@ -1,17 +1,26 @@
 #!/bin/bash
-###
- # @Author: korealu
- # @Date: 2022-03-08 15:23:56
- # @LastEditors: korealu 643949593@qq.com
- # @LastEditTime: 2022-07-07 10:31:19
- # @Description: file content
- # @FilePath: /h5-active-v2/push.sh
-###
 baseball=$(
   cd $(dirname $0) || exit
   pwd
 )
 cd "$baseball" || exit
+branch=(`git symbolic-ref --short HEAD`)
+echo $branch;
+
+check_remote_branch() {
+  local branch_name=$1
+  local remote_branches=(`git branch -r | sed 's/origin\///'`)
+  for remote_branch in "${remote_branches[@]}"; do
+    if [[ "$remote_branch" == *"$branch_name" ]]; then
+      git push  origin $branch
+      return 'branch already exists'  # 返回成功状态码
+    fi
+  done
+  git push origin --set-upstream $branch
+  return 'branch no present'  # 返回失败状态码
+}
+
+
 git add .
 npm run commit
-git push origin main
+check_remote_branch $branch
