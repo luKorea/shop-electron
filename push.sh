@@ -12,12 +12,12 @@ check_remote_branch() {
   local remote_branches=(`git branch -r | sed 's/origin\///'`)
   for remote_branch in "${remote_branches[@]}"; do
     if [[ "$remote_branch" == *"$branch_name" ]]; then
-      git push  origin $branch
-      return 'branch already exists'  # 返回成功状态码
+      git push origin $branch
+      return 1  # 返回成功状态码
     fi
   done
   git push origin --set-upstream $branch
-  return 'branch no present'  # 返回失败状态码
+  return 0  # 返回失败状态码
 }
 
 
