@@ -1,5 +1,9 @@
 # 项目配置说明
 
+# 2024.05.24
+
+1. commit 新增 GPG 校验
+
 # 1. 以下库为了解决 electron 启动同时打开浏览器 tab 以及 electron 客户端
 
 1. npm i concurrently
