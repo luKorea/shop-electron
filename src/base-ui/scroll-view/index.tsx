@@ -1,6 +1,6 @@
 import IconArrowLeft from '@/assets/svg/icon-arrow-left'
 import IconArrowRight from '@/assets/svg/icon-arrow-right'
-import React, { FC, ReactNode, memo, useEffect, useState } from 'react'
+import { FC, ReactNode, memo, useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { ViewWrapper } from './styled'
 interface IProps {

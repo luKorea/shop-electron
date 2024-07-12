@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { CommodityListWrapper } from './styled'
 import CommodityListDataComponent from '@/components/business-component/data-list/commodity-list'

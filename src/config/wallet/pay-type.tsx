@@ -5,7 +5,6 @@ import IconWallet from '@/assets/svg/icon-wallet'
 import IconWechat from '@/assets/svg/icon-wechat'
 import { formatMoney } from '@/utils/format'
 import { createUniqueString } from '@/utils/util'
-import React from 'react'
 import { ReactNode } from 'react'
 
 export type ITPayType = 'apple' | 'alipay' | 'wechat' | 'wallet' | 'creditCard'

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { createUniqueString } from '@/utils/util'
 
 export interface ITypeItemList {

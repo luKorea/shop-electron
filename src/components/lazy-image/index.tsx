@@ -1,5 +1,5 @@
 import { Image } from '@arco-design/web-react'
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { LazyLoadImageWrapper } from './styled'
 

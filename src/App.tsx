@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useRoutes } from 'react-router-dom'
 import routes from './router'
 import { setLocalDataAction } from '@/store/module/user'

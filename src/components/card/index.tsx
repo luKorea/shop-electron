@@ -1,6 +1,6 @@
 import { Card, CardProps } from '@arco-design/web-react'
 import classNames from 'classnames'
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { CardWrapper } from './styled'
 

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { HomeWrapper } from './styled'
 

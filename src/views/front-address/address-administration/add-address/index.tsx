@@ -1,5 +1,5 @@
 import useGetSearchParams from '@/hooks/use-get-search-params'
-import React, { memo, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 

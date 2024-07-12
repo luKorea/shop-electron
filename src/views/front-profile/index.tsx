@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { ProfileWrapper } from './styled'
 import { IServiceItem, serviceList } from '@/config/profile/service'

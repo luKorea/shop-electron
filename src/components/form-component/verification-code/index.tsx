@@ -1,7 +1,7 @@
 import { useCountDown } from '@/hooks/use-count'
 import { Input } from '@arco-design/web-react'
 import classNames from 'classnames'
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { VerificationCodeWrapper } from './styled'
 import { ILoginParams } from '@/types/module/user'

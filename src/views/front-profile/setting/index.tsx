@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react'
+import { memo, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 import { SettingWrapper } from './styled'
 import LayoutModal from '@/components/tip-modal/index'

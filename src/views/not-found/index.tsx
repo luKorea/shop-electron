@@ -1,5 +1,5 @@
 import { NotFoundWrapper } from './styled'
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 

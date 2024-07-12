@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import type { CSSProperties, FC, ReactNode } from 'react'
 import JsBarcode from 'jsbarcode'
 

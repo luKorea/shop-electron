@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { FrontAddressListWrapper } from './styled'
 import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'

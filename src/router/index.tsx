@@ -1,4 +1,3 @@
-import React from 'react'
 import { NonIndexRouteObject, Navigate } from 'react-router-dom'
 
 import {

@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react'
+import { memo, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 import { MoreIconWrapper } from './styled'
 import { Button, Dropdown, Menu } from '@arco-design/web-react'

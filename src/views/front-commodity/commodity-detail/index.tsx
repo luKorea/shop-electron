@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector, useAppShallowEqual } from '@/hooks'
 import { fetchCommodityDetailAction } from '@/store/module/commodity'
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { useParams } from 'react-router-dom'
 import { CommodityDetailWrapper } from './styled'

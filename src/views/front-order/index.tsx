@@ -1,5 +1,5 @@
 import LoginAuth from '@/components/login-auth'
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import FrontSkeletonComponent from '@/base-ui/skeleton'
 import NavBar from '@/components/business-component/nav-bar'

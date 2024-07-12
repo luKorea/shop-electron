@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   PAGE_ADDRESS_LIST,
   PAGE_PROFILE_HELP_CENTER,

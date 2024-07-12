@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { HeaderWrapper, SearchWrapper, UserInfoWrapper } from './styled'
 import { useNavigate } from 'react-router-dom'

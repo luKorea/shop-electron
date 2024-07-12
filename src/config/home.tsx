@@ -1,4 +1,3 @@
-import React from 'react'
 import { createUniqueString } from '@/utils/util'
 import {
   IconDelete,

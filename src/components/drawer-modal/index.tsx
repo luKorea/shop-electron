@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { DrawerModalWrapper } from './styled'
 import { Drawer, DrawerProps } from '@arco-design/web-react'

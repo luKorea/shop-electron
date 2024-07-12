@@ -1,7 +1,7 @@
 import { REDIRECT_URL } from '@/config/constant'
 import { PAGE_MEMBER } from '@/router/constant'
 import { Modal } from '@arco-design/web-react'
-import React, { forwardRef, memo, useImperativeHandle, useState } from 'react'
+import { forwardRef, memo, useImperativeHandle, useState } from 'react'
 import type { ReactNode, Ref } from 'react'
 import { useNavigate } from 'react-router-dom'
 

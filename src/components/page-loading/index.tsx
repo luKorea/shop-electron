@@ -1,5 +1,4 @@
 import Skeleton from '@/base-ui/skeleton'
-import React from 'react'
 import type { ReactNode } from 'react'
 
 interface IProps {

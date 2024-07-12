@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { CommodityListDataWrapper } from './styled'
 import { Divider, Rate, Tag, Typography } from '@arco-design/web-react'

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { FrontSearchWrapper } from './styled'
 import { Divider, Input } from '@arco-design/web-react'
